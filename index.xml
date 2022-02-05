@@ -54,7 +54,11 @@ Currently Serving Up:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://grantrosson.com/projects/zk/</guid>
-      <description>An Emacs package for note-taking, Zettelkasten-style</description>
+      <description>An Emacs package for taking notes using the Zettelkasten method.
+  Introduction and Key Features
+  Demo of setup and basic features
+  Demo of &amp;lsquo;Index&amp;rsquo; and &amp;lsquo;Desktop&amp;rsquo; interfaces
+  </description>
     </item>
     
   </channel>
