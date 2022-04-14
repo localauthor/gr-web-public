@@ -1,5 +1,6 @@
-:root { 
-    --primary-color: rgba(0, 0, 0, .82); 
+:root {
+    /* background color */
+    --primary-color: rgba(0, 0, 0, .82);
     --secondary-color: rgb(127, 112, 80);
     --link-color:rgba(200, 200, 290, .6);
 } 
