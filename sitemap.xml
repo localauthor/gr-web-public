@@ -4,9 +4,7 @@
   <url>
     <loc>https://grantrosson.com/about/</loc>
   </url><url>
-    <loc>https://grantrosson.com/posts/about/</loc>
-  </url><url>
-    <loc>https://grantrosson.com/authors/</loc>
+    <loc>https://grantrosson.com/categories/</loc>
   </url><url>
     <loc>https://grantrosson.com/cv/</loc>
   </url><url>
@@ -18,9 +16,9 @@
   </url><url>
     <loc>https://grantrosson.com/projects/poem-machine-crawl/</loc>
   </url><url>
-    <loc>https://grantrosson.com/posts/</loc>
-  </url><url>
     <loc>https://grantrosson.com/projects/</loc>
+  </url><url>
+    <loc>https://grantrosson.com/tags/</loc>
   </url><url>
     <loc>https://grantrosson.com/projects/zk/</loc>
   </url>
