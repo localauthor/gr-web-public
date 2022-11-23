@@ -52,33 +52,21 @@
 }
 
 #about i {
-    font-size: 25px !important;
+    font-size: 20px !important;
     color: var(--secondary-color);
 }
 
-#projects img {
-    width: 80%;
+#projects p {
+    color: var(--primary-color);
 }
 
-#publications hr {
-    width: calc(100% + 20px);
-    margin:3 auto;
-}
-
-#research {
-    text-align: center;
-}
-#research img {
-    width: 50%;
+#projects h5 {
+    color: var(--primary-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: .5em 0 .3em 0;
-  line-height: 1em;
-}
-
-p {
-    color: var(--primary-color);
+    margin: .5em 0 .3em 0;
+    line-height: 1em;
 }
 
 h1 {
@@ -95,7 +83,6 @@ h4 {
 }
 h5 {
     font-size: 1.6em;
-    color: var(--primary-color);
 }
 h6 {
     font-size: 0.75em;
