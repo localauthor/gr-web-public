@@ -5,6 +5,7 @@
     <link>https://grantrosson.com/tags/</link>
     <description>Recent content in Tags on Grant Rosson</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://grantrosson.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://grantrosson.com/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
