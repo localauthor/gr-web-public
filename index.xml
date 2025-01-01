@@ -8,13 +8,6 @@
     <language>en-us</language>
     <atom:link href="https://grantrosson.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>https://grantrosson.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://grantrosson.com/about/</guid>
-      <description>&lt;br /&gt;&#xA;&lt;p&gt;This is a personal and professional webpage. (I am a personal and a professional person.)&lt;/p&gt;&#xA;&lt;p&gt;I teach American literature at Vilnius University.&lt;/p&gt;&#xA;&lt;p&gt;I try to improve my classes, my research, and my personal brand, as I can.&lt;/p&gt;&#xA;&lt;p&gt;I recently finished a dissertation on literature’s intersection with geographic knowledge-production in nineteenth-century America. It features chapters on Charles Brockden Brown, Margaret Fuller, and Emily Dickinson.&lt;/p&gt;&#xA;&lt;p&gt;I take &lt;a href=&#34;http://instagram.com/grosson&#34;&gt;photographs&lt;/a&gt;. I sometimes post &lt;a href=&#34;https://localauthor.github.io&#34;&gt;here&lt;/a&gt;. This is a &lt;a href=&#34;https://https//grantrosson.com/poem-crawl/&#34;&gt;poet&lt;/a&gt;. And so is &lt;a href=&#34;https://grantrosson.com/poem-machine&#34;&gt;this&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>CV</title>
       <link>https://grantrosson.com/cv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -54,7 +47,7 @@
       <link>https://grantrosson.com/projects/zk/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://grantrosson.com/projects/zk/</guid>
-      <description>&lt;p&gt;An Emacs package for taking notes using the Zettelkasten method.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/localauthor/zk#readme&#34;&gt;Introduction and Key Features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/BixlUK4QTNk&#34;&gt;Demo of setup and basic features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/7qNT87dphiA&#34;&gt;Demo of &amp;lsquo;Index&amp;rsquo; and &amp;lsquo;Desktop&amp;rsquo; interfaces&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>&lt;p&gt;Demacs package for taking notes using the Zettelkasten method.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/localauthor/zk#readme&#34;&gt;Introduction and Key Features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/BixlUK4QTNk&#34;&gt;Demo of setup and basic features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/7qNT87dphiA&#34;&gt;Demo of &amp;lsquo;Index&amp;rsquo; and &amp;lsquo;Desktop&amp;rsquo; interfaces&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>
