@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cemetery Poems</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="outline-container-org3937cb3" class="outline-2">
+<h2 id="org3937cb3">“This quiet Dust was Gentlemen and Ladies” - Emily Dickinson</h2>
+<div class="outline-text-2" id="text-org3937cb3">
+<p class="verse">
+This quiet Dust was Gentlemen and Ladies,<br />
+&#xa0;&#xa0;&#xa0;And Lads and Girls;<br />
+Was laughter and ability and sighing,<br />
+&#xa0;&#xa0;&#xa0;And frocks and curls.<br />
+<br />
+This passive place a Summer&rsquo;s nimble mansion,<br />
+&#xa0;&#xa0;&#xa0;Where Bloom and Bees<br />
+Fulfilled their Oriental Circuit,<br />
+&#xa0;&#xa0;&#xa0;Then ceased like these.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org7a50d4a" class="outline-2">
+<h2 id="org7a50d4a">“We do not play on Graves” - Emily Dickinson</h2>
+<div class="outline-text-2" id="text-org7a50d4a">
+<p class="verse">
+We do not play on Graves—<br />
+Because there isn&rsquo;t Room—<br />
+Besides—it isn&rsquo;t even—it slants<br />
+And People come—<br />
+<br />
+And put a Flower on it—<br />
+And hang their faces so—<br />
+We&rsquo;re fearing that their Hearts will drop—<br />
+And crush our pretty play—<br />
+<br />
+And so we move as far<br />
+As Enemies—away—<br />
+Just looking round to see how far<br />
+It is—Occasionally—<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orge22eebb" class="outline-2">
+<h2 id="orge22eebb">“Safe in their Alabaster Chambers” - Emily Dickinson</h2>
+<div class="outline-text-2" id="text-orge22eebb">
+<p class="verse">
+Safe in their Alabaster Chambers -<br />
+Untouched by Morning -<br />
+and untouched by noon -<br />
+Sleep the meek members of the Resurrection,<br />
+Rafter of Satin and Roof of Stone -<br />
+<br />
+Grand go the Years,<br />
+In the Crescent above them -<br />
+Worlds scoop their Arcs -<br />
+and Firmaments - row -<br />
+Diadems - drop -<br />
+And Doges surrender -<br />
+Soundless as Dots,<br />
+On a Disk of Snow.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgf31fcc3" class="outline-2">
+<h2 id="orgf31fcc3">“Evening Hour” - Robert Penn Warren</h2>
+<div class="outline-text-2" id="text-orgf31fcc3">
+<p class="verse">
+<br />
+There was a graveyard once—or cemetery<br />
+It&rsquo;s now more toney to say—just a field without fence<br />
+Pretty far from town, on a hill good and gravelly<br />
+So rain wouldn&rsquo;t stand to disturb local residents,<br />
+<br />
+Though all were long past the sniffles and rheumatism:<br />
+A tract of no real estate value, where flourished not<br />
+Even thistle, and the spade at the grievous chasm<br />
+Would go chink on chipped flint in the dirt, for in times forgot<br />
+<br />
+Here the Indian crouched to perfect his arrowhead.<br />
+And there was a boy, long after, who gathered such things<br />
+Among shiny new tombstones recording the first-planted dead,<br />
+Now and then looking up at a buzzard&rsquo;s high sun-glinting wings,<br />
+<br />
+Not thinking of flesh and its nature, but suddenly still<br />
+For maybe two minutes; as when, up the rise, a great<br />
+Strove in the panting and clank of man&rsquo;s living will,<br />
+Asserting itself in the face of an ignorant date.<br />
+<br />
+Not morbid, nor putting two and two together<br />
+To make any mystic, or fumblingly philosophical,<br />
+Four, he sometimes kept waiting, if decent the weather,<br />
+In a lonely way, arrowheads forgotten, till all<br />
+<br />
+The tights of the town had come on. He did not know<br />
+Why the lights, so familiar, now seemed so far away,<br />
+And more than once felt the crazy impulse grow<br />
+To lay ear to earth for what voices beneath might say.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgc7266ce" class="outline-2">
+<h2 id="orgc7266ce">“Monument” - Natasha Trethewey</h2>
+<div class="outline-text-2" id="text-orgc7266ce">
+<p class="verse">
+Today the ants are busy<br />
+&#xa0;&#xa0;&#xa0;&#xa0;beside my front steps, weaving<br />
+in and out of the hill they’re building.<br />
+&#xa0;&#xa0;&#xa0;&#xa0;I watch them emerge and—<br />
+<br />
+like everything I’ve forgotten—disappear<br />
+&#xa0;&#xa0;&#xa0;&#xa0;into the subterranean—a world<br />
+made by displacement. In the cemetery<br />
+&#xa0;&#xa0;&#xa0;&#xa0;last June, I circled, lost—<br />
+<br />
+weeds and grass grown up all around—<br />
+&#xa0;&#xa0;&#xa0;&#xa0;the landscape blurred and waving.<br />
+At my mother’s grave, ants streamed in<br />
+&#xa0;&#xa0;&#xa0;&#xa0;and out like arteries, a tiny hill rising<br />
+<br />
+above her untended plot. Bit by bit,<br />
+&#xa0;&#xa0;&#xa0;&#xa0;red dirt piled up, spread<br />
+like a rash on the grass; I watched a long time<br />
+&#xa0;&#xa0;&#xa0;&#xa0;the ants&rsquo; determined work,<br />
+<br />
+how they brought up soil<br />
+&#xa0;&#xa0;&#xa0;&#xa0;of which she will be part,<br />
+and piled it before me. Believe me when I say<br />
+&#xa0;&#xa0;&#xa0;&#xa0;I&rsquo;ve tried not to begrudge them<br />
+<br />
+their industry, this reminder of what<br />
+&#xa0;&#xa0;&#xa0;&#xa0;I haven’t done. Even now,<br />
+the mound is a blister on my heart,<br />
+&#xa0;&#xa0;&#xa0;&#xa0;a red and humming swarm.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgcfb474c" class="outline-2">
+<h2 id="orgcfb474c">“Homage To Paul Cezanne” - Charles Wright</h2>
+<div class="outline-text-2" id="text-orgcfb474c">
+<p class="verse">
+At night, in the fish-light of the moon, the dead wear our white shirts<br />
+To stay warm, and litter the fields.<br />
+We pick them up in the mornings, dewy pieces of paper and scraps of cloth.<br />
+<br />
+Like us, they refract themselves. Like us,<br />
+They keep on saying the same thing, trying to get it right.<br />
+Like us, the water unsettles their names.<br />
+<br />
+Sometimes they lie like leaves in their little arks, and curl up at the edges.<br />
+<br />
+Sometimes they come inside, wearing our shoes, and walk<br />
+From mirror to mirror.<br />
+Or lie in our beds with their gloves off<br />
+And touch our bodies. Or talk<br />
+In a corner. Or wait like envelopes on a desk.<br />
+<br />
+They reach up from the ice plant.<br />
+They shuttle their messengers through the oat grass.<br />
+Their answers rise like rust on the stalks and the spidery leaves.<br />
+<br />
+We rub them off our hands.<br />
+<br />
+Each year the dead grow less dead, and nudge<br />
+Close to the surface of all things.<br />
+They start to remember the silence that brought them there.<br />
+They start to recount the gain in their soiled hands.<br />
+<br />
+Their glasses let loose, and grain by grain return to the river bank<br />
+They point to their favorite words<br />
+Growing around them, revealed as themselves for the first time:<br />
+They stand close to the meanings and take them.<br />
+<br />
+They stand there, vague and without pain,<br />
+Under their fingernails an unreturnable dirt.<br />
+They stand there and it comes back,<br />
+The music of everything, syllable after syllable<br />
+<br />
+Out of the burning chair, out of the beings of light.<br />
+It all comes back.<br />
+And what they repeat to themselves, and what they repeat to themselves<br />
+Is the song that our fathers sing.<br />
+<br />
+In steeps and sighs,<br />
+The ocean explains itself, backing and filling<br />
+What spaces it can’t avoid, spaces<br />
+In black shoes, their hands clasped, their eyes teared at the edges:<br />
+We watch from the high hillside,<br />
+The ocean swelling and flattening, the spaces<br />
+Filling and emptying, horizon blade<br />
+Flashing the early afternoon sun.<br />
+<br />
+The dead are constant in<br />
+The white lips of the sea.<br />
+Over and over, through clenched teeth, they tell<br />
+Their story, the story each knows by heart:<br />
+Remember me, speak my name.<br />
+When the moon tugs at my sleeve,<br />
+When the body of water is raised and becomes the body of light,<br />
+Remember me, speak my name.<br />
+<br />
+The dead are a cadmium blue.<br />
+We spread them with palette knives in broad blocks and planes.<br />
+<br />
+We layer them stroke by stroke<br />
+In steps and ascending mass, in verticals raised from the earth.<br />
+<br />
+We choose, and layer them in,<br />
+Blue and a blue and a breath,<br />
+<br />
+Circle and smudge, cross beak and button hook,<br />
+We layer them in. We squint hard and terrace them line by line.<br />
+<br />
+And so we are come between, and cry out,<br />
+And stare up at the sky and its cloudy panes,<br />
+<br />
+And finger the cypress twists.<br />
+The dead understand all this, and keep in touch,<br />
+<br />
+Rustle of hand to hand in the lemon trees,<br />
+Flags, and the great sifts of anger<br />
+<br />
+To powder and nothingness.<br />
+The dead are a cadmium blue, and they understand.<br />
+<br />
+The dead are with us to stay.<br />
+Their shadows rock in the back yard, so pure, so black,<br />
+Between the oak tree and the porch.<br />
+<br />
+Over our heads they’re huge in the night sky.<br />
+In the tall grass they turn with the zodiac.<br />
+Under our feet they’re white with the snows of a thousand years.<br />
+<br />
+They carry their colored threads and baskets of silk<br />
+To mend our clothes, making us look right,<br />
+Altering, stitching, replacing a button, closing a tear.<br />
+They lie like tucks in our loose sleeves, they hold us together.<br />
+<br />
+They blow the last leaves away.<br />
+They slide like an overflow into the river of heaven.<br />
+Everywhere they are flying.<br />
+<br />
+The dead are a sleight and a fade<br />
+We fall for, like flowering plums, like white coins from the rain.<br />
+Their sighs are gaps in the wind.<br />
+<br />
+The dead are waiting for us in our rooms,<br />
+Little globules of light<br />
+In one of the far corners, and close to the ceiling, hovering, thinking our thoughts.<br />
+<br />
+Often they’ll reach a hand down,<br />
+Or offer a word, and ease us out of our bodies to join them in theirs.<br />
+We look back at our other selves on the bed.<br />
+<br />
+We look back and we don’t care and we go.<br />
+<br />
+And thus we become what we’ve longed for,<br />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;past tense and otherwise,<br />
+<br />
+A BB, a disc of light,<br />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;song without words.<br />
+<br />
+And refer to ourselves<br />
+In the third person, seeing that other arm<br />
+Still raised from the bed, fingers like licks and flames in the boned air.<br />
+<br />
+Only to hear that it’s not time.<br />
+Only to hear that we must re-enter and lie still, our arms at rest at our sides,<br />
+The voices rising around us like rain.<br />
+<br />
+And dew, it’s all right, it’s all right, it’s all right . . .<br />
+<br />
+The dead fall around us like rain.<br />
+They come down from the last clouds in the late light for the last time<br />
+And slip through the sod.<br />
+<br />
+They lean uphill and face north.<br />
+&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;Like grass,<br />
+They bend toward the sea, they break toward the setting sun.<br />
+<br />
+We filigree and we baste.<br />
+But what do the dead care for the fringe of words,<br />
+Safe in their suits of milk?<br />
+What do they care for the honk and flash of a new style?<br />
+<br />
+And who is to say if the inch of snow in our hearts<br />
+Is rectitude enough?<br />
+<br />
+Spring picks the locks of the wind.<br />
+High in the night sky the mirror is hauled up and unsheeted.<br />
+In it we twist like stars.<br />
+<br />
+<br />
+Ahead of us, through the dark, the dead<br />
+Are beating their drums and stirring the yellow leaves.<br />
+<br />
+We’re out here, our feet in the soil, our heads craned up at the sky,<br />
+The stars streaming and bursting behind the trees.<br />
+<br />
+At dawn, as the clouds gather, we watch<br />
+The mountain glide from the east on the valley floor,<br />
+Coming together in starts and jumps.<br />
+Behind their curtain, the bears<br />
+Amble across the heavens, serene as black coffee . . .<br />
+<br />
+Whose unction can intercede for the dead?<br />
+Whose tongue is toothless enough to speak their piece?<br />
+<br />
+What we are given in dreams we write as blue paint,<br />
+Or messages to the clouds.<br />
+At evening we wait for the rain to fall and the sky to clear.<br />
+Our words are words for the clay, uttered in undertones,<br />
+Our gestures salve for the wind.<br />
+<br />
+We sit out on the earth and stretch our limbs,<br />
+Hoarding the little mounds of sorrow laid up in our hearts.<br />
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
