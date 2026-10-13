@@ -14,3 +14,9 @@ jobs:
         server: ftp.grantrosson.com
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: ./
+        timeout: 180000          # 3 minutes timeout
+        port: 21                 # Standard FTP port
+        protocol: ftp            # Use plain FTP (not FTPS)
+        security: loose 
