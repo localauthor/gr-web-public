@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Projects on Grant Rosson</title>
-    <link>https://grantrosson.com/projects/</link>
-    <description>Recent content in Projects on Grant Rosson</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <atom:link href="https://grantrosson.com/projects/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>localauthor</title>
-      <link>https://grantrosson.com/projects/localauthor/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://grantrosson.com/projects/localauthor/</guid>
-      <description>&lt;p&gt;Occasional short sketches on local fare and otherwise, offered freely.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>poem-machine</title>
-      <link>https://grantrosson.com/projects/poem-machine/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://grantrosson.com/projects/poem-machine/</guid>
-      <description>&lt;p&gt;Turning your favorite source text into the stock of your creations one random word at a time.&lt;/p&gt;&#xA;&lt;p&gt;Command-line version: &lt;a href=&#34;https://github.com/localauthor/poem-machine&#34;&gt;https://github.com/localauthor/poem-machine&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>poem-machine-crawl</title>
-      <link>https://grantrosson.com/projects/poem-machine-crawl/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://grantrosson.com/projects/poem-machine-crawl/</guid>
-      <description>&lt;p&gt;Wonder at the infinite crawl of the poem-machine.&lt;/p&gt;&#xA;&lt;p&gt;Currently Serving Up:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/dickinson&#34;&gt;Dickinson&amp;rsquo;s &lt;em&gt;Poems&lt;/em&gt; (1890)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/thoreau&#34;&gt;Thoreau&amp;rsquo;s &lt;em&gt;Journal&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/fuller&#34;&gt;Fuller&amp;rsquo;s &lt;em&gt;Summer on the Lakes&lt;/em&gt; (1844)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Some reports from the machine: &lt;a href=&#34;https://localauthor.github.io/poem-machine-poems&#34;&gt;https://localauthor.github.io/poem-machine-poems&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Or, visit the Github repository, to see the source code:  &lt;a href=&#34;https://github.com/localauthor/poem-machine-crawl&#34;&gt;https://github.com/localauthor/poem-machine-crawl&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>zk</title>
-      <link>https://grantrosson.com/projects/zk/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://grantrosson.com/projects/zk/</guid>
-      <description>&lt;p&gt;Demacs package for taking notes using the Zettelkasten method.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/localauthor/zk#readme&#34;&gt;Introduction and Key Features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/BixlUK4QTNk&#34;&gt;Demo of setup and basic features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/7qNT87dphiA&#34;&gt;Demo of &amp;lsquo;Index&amp;rsquo; and &amp;lsquo;Desktop&amp;rsquo; interfaces&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Projects on Grant Rosson</title>
+		<link>https://grantrosson.com/projects/</link>
+		<description>Recent content in Projects on Grant Rosson</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<atom:link href="https://grantrosson.com/projects/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>localauthor</title>
+				<link>https://grantrosson.com/projects/localauthor/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://grantrosson.com/projects/localauthor/</guid>
+				<description>&lt;p&gt;Occasional short sketches on local fare and otherwise, offered freely.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>poem-machine</title>
+				<link>https://grantrosson.com/projects/poem-machine/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://grantrosson.com/projects/poem-machine/</guid>
+				<description>&lt;p&gt;Turning your favorite source text into the stock of your creations one random word at a time.&lt;/p&gt;&#xA;&lt;p&gt;Command-line version: &lt;a href=&#34;https://github.com/localauthor/poem-machine&#34;&gt;https://github.com/localauthor/poem-machine&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>poem-machine-crawl</title>
+				<link>https://grantrosson.com/projects/poem-machine-crawl/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://grantrosson.com/projects/poem-machine-crawl/</guid>
+				<description>&lt;p&gt;Wonder at the infinite crawl of the poem-machine.&lt;/p&gt;&#xA;&lt;p&gt;Currently Serving Up:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/dickinson&#34;&gt;Dickinson&amp;rsquo;s &lt;em&gt;Poems&lt;/em&gt; (1890)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/thoreau&#34;&gt;Thoreau&amp;rsquo;s &lt;em&gt;Journal&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://grantrosson.com/poem-crawl/fuller&#34;&gt;Fuller&amp;rsquo;s &lt;em&gt;Summer on the Lakes&lt;/em&gt; (1844)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Some reports from the machine: &lt;a href=&#34;https://localauthor.github.io/poem-machine-poems&#34;&gt;https://localauthor.github.io/poem-machine-poems&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Or, visit the Github repository, to see the source code:  &lt;a href=&#34;https://github.com/localauthor/poem-machine-crawl&#34;&gt;https://github.com/localauthor/poem-machine-crawl&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>zk</title>
+				<link>https://grantrosson.com/projects/zk/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://grantrosson.com/projects/zk/</guid>
+				<description>&lt;p&gt;Demacs package for taking notes using the Zettelkasten method.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/localauthor/zk#readme&#34;&gt;Introduction and Key Features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/BixlUK4QTNk&#34;&gt;Demo of setup and basic features&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://youtu.be/7qNT87dphiA&#34;&gt;Demo of &amp;lsquo;Index&amp;rsquo; and &amp;lsquo;Desktop&amp;rsquo; interfaces&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+			</item>
+	</channel>
 </rss>
