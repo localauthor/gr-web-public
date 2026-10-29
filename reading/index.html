@@ -27,6 +27,7 @@ a.title:hover { text-decoration: underline; }
 .stats { font-size: 13px; color: var(--muted); margin-top: 1px; }
 .stats .stale { color: var(--stale); }
 .item.done .title, .item.done .author { text-decoration: line-through; color: var(--muted); }
+hr.div { border: 0; border-top: 3px double var(--muted); opacity: .45; margin: 44px 0 0; }
 .more { color: var(--muted); font-size: 14px; padding: 10px 0 0 34px; }
 .empty { color: var(--muted); font-size: 14px; padding: 10px 0; }
 footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
@@ -57,7 +58,7 @@ function render(data) {
   for (const k of Object.keys(ticks)) if (!keys.has(k)) delete ticks[k];
   save();
 
-  document.getElementById("out").innerHTML = data.sections.map(s => `
+  document.getElementById("out").innerHTML = data.sections.map(s => `${s.divider ? '<hr class="div">' : ""}
     <h2>${esc(s.label)} <span class="n">${s.items.length + (s.more || 0)}</span></h2>
     ${s.items.map(item).join("")}
     ${s.more ? `<p class="more">and ${s.more} more</p>` : ""}`).join("") || '<p class="empty">Nothing on the list.</p>';
