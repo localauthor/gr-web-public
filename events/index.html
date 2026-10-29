@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Events near Elektrėnai | Grant Rosson</title>
+<title>Events | Grant Rosson</title>
 <meta name="description" content="Music, theatre, nature, family, market and sports events around Elektrėnai, Vievis, Trakai, Kaišiadorys, Kernavė and Vilnius.">
 <link rel="icon" href="/favicon.png">
 <style>
@@ -11,26 +11,19 @@
   --bg: #faf8f4; --card: #fff; --ink: rgba(0,0,0,.84); --muted: #6b665c; --line: #e7e2d8;
   --accent: rgb(127,112,80); --accent-soft: #f1ece1; --pick: #fbf3df; --pick-edge: #d9a521;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #17150f; --card: #211e17; --ink: #ece7dc; --muted: #a39b8a; --line: #3a352b;
-    --accent: #c9b48a; --accent-soft: #2e2a20; --pick: #2d2614; --pick-edge: #b88a1a;
-  }
-}
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 a { color: inherit; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
-.home { font-size: 14px; color: var(--muted); text-decoration: none; }
-h1 { font-size: 28px; line-height: 1.2; margin: 14px 0 4px; }
+h1 { font-size: 28px; line-height: 1.2; margin: 8px 0 4px; }
 .sub { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
 .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
-.tab { appearance: none; border: 0; background: none; font: inherit; font-weight: 600; color: var(--muted); padding: 10px 14px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tab { appearance: none; border: 0; background: none; font: inherit; font-weight: 600; color: var(--muted); padding: 10px 14px; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
 .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
 .range { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-.chip { appearance: none; font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; padding: 4px; background: var(--accent-soft); border-radius: 8px; }
+.chip { appearance: none; flex: 1 1 auto; font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 6px; border: 0; background: none; color: var(--muted); cursor: pointer; }
+.chip[aria-selected="true"] { background: var(--card); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
 .picks { background: var(--pick); border-left: 4px solid var(--pick-edge); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
 .picks h2 { font-size: 15px; margin: 0 0 6px; }
 .picks ul { margin: 0; padding-left: 18px; font-size: 15px; }
@@ -52,16 +45,15 @@ footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
 </head>
 <body>
 <div class="wrap">
-  <a class="home" href="/">← grantrosson.com</a>
-  <h1>Events near Elektrėnai</h1>
+  <h1>Events</h1>
   <p class="sub">Music, theatre, nature, family, markets and sports in Elektrėnai, Vievis, Trakai, Kaišiadorys, Kernavė and Vilnius. Updated weekly.</p>
 
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" data-tab="week" aria-selected="true">This week</button>
-    <button class="tab" role="tab" data-tab="month" aria-selected="false">Coming month</button>
+    <button class="tab" role="tab" data-tab="month" aria-selected="false">This month</button>
   </div>
   <p class="range" id="range"></p>
-  <div class="chips" id="chips"></div>
+  <div class="chips" id="chips" role="tablist"></div>
   <div id="out"><p class="empty">Loading events…</p></div>
 
   <footer id="foot"></footer>
@@ -71,7 +63,7 @@ footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
 const AREAS = { near: "Near home: Elektrėnai & Vievis", region: "Around the region: Trakai · Kaišiadorys · Kernavė · Neris Park", vilnius: "Vilnius" };
 const CATS = { music: "Music", theatre: "Theatre", family: "Family", nature: "Nature", markets: "Markets", sports: "Sports" };
 const DAY = 864e5;
-const state = { tab: "week", cats: new Set() };
+const state = { tab: "week", cat: "" };
 try { const t = localStorage.getItem("events-tab"); if (t === "week" || t === "month") state.tab = t; } catch (e) {}
 
 const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
@@ -97,11 +89,12 @@ function render() {
 
   const inRange = data.events.filter(e => parse(e.start) <= end && parse(e.end || e.start) >= start);
   const present = Object.keys(CATS).filter(c => inRange.some(e => e.category === c));
+  if (state.cat && !present.includes(state.cat)) state.cat = "";
   document.getElementById("chips").innerHTML =
-    `<button class="chip" data-cat="" aria-pressed="${state.cats.size === 0}">All</button>` +
-    present.map(c => `<button class="chip" data-cat="${c}" aria-pressed="${state.cats.has(c)}">${CATS[c]}</button>`).join("");
+    `<button class="chip" role="tab" data-cat="" aria-selected="${!state.cat}">All</button>` +
+    present.map(c => `<button class="chip" role="tab" data-cat="${c}" aria-selected="${state.cat === c}">${CATS[c]}</button>`).join("");
 
-  const shown = inRange.filter(e => !state.cats.size || state.cats.has(e.category))
+  const shown = inRange.filter(e => !state.cat || e.category === state.cat)
     .sort((a, b) => Math.max(parse(a.start), start) - Math.max(parse(b.start), start) || (a.time || "").localeCompare(b.time || ""));
 
   let html = "";
@@ -156,8 +149,7 @@ document.querySelector(".tabs").addEventListener("click", ev => {
 });
 document.getElementById("chips").addEventListener("click", ev => {
   const b = ev.target.closest(".chip"); if (!b) return;
-  const c = b.dataset.cat;
-  if (!c) state.cats.clear(); else state.cats.has(c) ? state.cats.delete(c) : state.cats.add(c);
+  state.cat = b.dataset.cat;
   render();
 });
 </script>
