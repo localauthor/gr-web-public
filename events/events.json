@@ -37,7 +37,7 @@
    "venue": "Elektrėnai Culture Centre",
    "town": "Elektrėnai",
    "area": "near",
-   "category": "family",
+   "category": "art",
    "desc": "Vaiva Rimkutė's storybook-style illustrations, in their last days.",
    "url": "https://kcelektrenai.lt/event/vaivos-rimkutes-vaja_art-iliustraciju-paroda-stebuklai-gyvena-salia/?instance_id=1041"
   },
@@ -53,17 +53,6 @@
    "desc": "The traditional Lithuanian zither played with electronics, part of the centre's Etno srovė folk series.",
    "url": "https://kcelektrenai.lt/event/vaiva-dunaityte-elektrines-kankles-etno-srove-renginiu-ciklas/?instance_id=1053",
    "pick": true
-  },
-  {
-   "title": "(Ne)ištikimybės spąstai ((In)fidelity Trap): comedy",
-   "start": "2026-11-08",
-   "time": "17:00",
-   "venue": "Elektrėnai Culture Centre",
-   "town": "Elektrėnai",
-   "area": "near",
-   "category": "theatre",
-   "desc": "A touring Lithuanian-language comedy. Tickets on Bilietai.lt and Ticketmarket.",
-   "url": "https://kcelektrenai.lt/event/komedija-neistikimybes-spastai-elektrenai/?instance_id=1047"
   },
   {
    "title": "Evoliucija (Evolution): animated film",
@@ -90,16 +79,6 @@
    "pick": true
   },
   {
-   "title": "Buhalterinė klaida (Accounting Error): play",
-   "start": "2026-11-17",
-   "venue": "Vievis",
-   "town": "Vievis",
-   "area": "near",
-   "category": "theatre",
-   "desc": "A touring comedy in Vievis.",
-   "url": "https://www.elektrenai.lt/go.php/lit/Kalendorius?eventid=2852"
-  },
-  {
    "title": "Mergaitė ir stebuklinga plunksna (The Girl and the Magic Feather): animated film",
    "start": "2026-11-18",
    "time": "17:30",
@@ -110,17 +89,6 @@
    "price": "€6",
    "desc": "An animated family film screening.",
    "url": "https://kcelektrenai.lt/event/mergaite-ir-stebuklinga-plunksna-animacinis-kino-filmas/?instance_id=1046"
-  },
-  {
-   "title": "Geri kaimynai (Good Neighbours): premiere",
-   "start": "2026-11-21",
-   "time": "18:00",
-   "venue": "Elektrėnai Culture Centre",
-   "town": "Elektrėnai",
-   "area": "near",
-   "category": "theatre",
-   "desc": "A new comedy, for ages 13 and up, about 1 h 30 min.",
-   "url": "https://kcelektrenai.lt/event/premjera-geri-kaimynai-elektrenai/?instance_id=1025"
   },
   {
    "title": "Vievio džiazo klavišai (Vievis Jazz Keys)",
@@ -204,7 +172,7 @@
    "venue": "Rumšiškės Culture Centre",
    "town": "Rumšiškės",
    "area": "region",
-   "category": "family",
+   "category": "art",
    "desc": "An exhibition about how the river shaped the towns along it.",
    "url": "https://kaisiadorysinfo.lt/renginiai/keliaujanti-paroda-upe-kuri-pastate-miestus/"
   },
@@ -250,17 +218,6 @@
    "price": "Free",
    "desc": "Songs and stories for the season of remembering the dead.",
    "url": "https://www.facebook.com/photo/?fbid=1746785410788828&set=a.483632103770838"
-  },
-  {
-   "title": "SOLO Kaišiadorys: performing arts festival",
-   "start": "2026-11-09",
-   "end": "2026-11-13",
-   "venue": "Kaišiadorys",
-   "town": "Kaišiadorys",
-   "area": "region",
-   "category": "theatre",
-   "desc": "A festival of solo theatre and stage performances.",
-   "url": "https://sustotikulturos.lt/renginiai/scenos-menu-festivalis-solo-kaisiadorys-2026/"
   },
   {
    "title": "VAIVA&JAZNN: kanklės meets jazz",
@@ -319,18 +276,6 @@
    "price": "from €15",
    "desc": "A short, gentle first-theatre experience for toddlers and preschoolers.",
    "url": "https://www.vilnius-events.lt/en/event/puppet-show-for-little-ones-1-5-years-about-the-world-11/"
-  },
-  {
-   "title": "Pas mus šventė (We're Having a Celebration), dir. Paulius Markevičius",
-   "start": "2026-10-30",
-   "time": "19:00",
-   "venue": "Konstitucijos pr. 23",
-   "town": "Vilnius",
-   "area": "vilnius",
-   "category": "theatre",
-   "price": "€30–35",
-   "desc": "A Lithuanian-language production.",
-   "url": "https://www.vilnius-events.lt/en/event/lt-spektaklis-pas-mus-vent-re-paulius-markevi-ius/"
   },
   {
    "title": "The Seasons: Augustas Vasiliauskas (sax) & Alija Ben (piano)",
@@ -400,7 +345,7 @@
    "venue": "Teatro krantas",
    "town": "Vilnius",
    "area": "vilnius",
-   "category": "theatre",
+   "category": "family",
    "desc": "The classic fairy tale staged for young children, in Lithuanian.",
    "url": "https://kaveikti.lt/renginys/spektaklis-vaikams-snieguole-ir-nykstukai"
   },
@@ -428,17 +373,6 @@
    "url": "https://kaveikti.lt/renginys/fk-panevezys-transinvest"
   },
   {
-   "title": "Vyras po padu (Henpecked): adventure comedy",
-   "start": "2026-10-31",
-   "time": "18:00",
-   "venue": "Domino teatras",
-   "town": "Vilnius",
-   "area": "vilnius",
-   "category": "theatre",
-   "desc": "A light popular comedy, in Lithuanian.",
-   "url": "https://kaveikti.lt/renginys/nuotykiu-komedija-vyras-po-padu"
-  },
-  {
    "title": "Dinner with Jazz: piano jazz",
    "start": "2026-10-31",
    "time": "18:30",
@@ -449,19 +383,6 @@
    "price": "Free",
    "desc": "Relaxed live piano jazz over dinner.",
    "url": "https://www.vilnius-events.lt/en/event/dinner-with-jazz-piano-jazz-13/"
-  },
-  {
-   "title": "LOW AIR premiere: Sisters (dance)",
-   "start": "2026-10-31",
-   "time": "19:00",
-   "venue": "Arts Printing House (Menų spaustuvė)",
-   "town": "Vilnius",
-   "area": "vilnius",
-   "category": "theatre",
-   "price": "€20–25",
-   "desc": "A contemporary dance premiere. No Lithuanian needed.",
-   "url": "https://www.vilnius-events.lt/en/event/low-air-15-premiere-dance-performance-sisters/",
-   "pick": true
   },
   {
    "title": "Kęstutis Vaiginis Trio",
@@ -498,18 +419,6 @@
    "price": "from €30",
    "desc": "Bach reimagined by a contemporary duo.",
    "url": "https://www.vilnius-events.lt/en/event/a-modern-encounter-with-bach-duo-nida/"
-  },
-  {
-   "title": "Molière, I Am a Doctor",
-   "start": "2026-11-04",
-   "time": "18:00",
-   "venue": "Old Theatre of Vilnius",
-   "town": "Vilnius",
-   "area": "vilnius",
-   "category": "theatre",
-   "price": "from €21.80",
-   "desc": "Molière's farce about a woodcutter forced to pretend he's a doctor.",
-   "url": "https://www.vilnius-events.lt/en/event/lt-moli-re-o-komedija-spektaklis-a-gydytojas/"
   },
   {
    "title": "Pokrovo varpai folklore festival: opening concert",
@@ -616,6 +525,115 @@
    "desc": "The city's Christmas tree is lit and the Christmas market opens.",
    "url": "https://www.vilnius-events.lt/en/event/christmas-in-vilnius-2/",
    "pick": true
+  },
+  {
+   "title": "Critical Proximity: Paul O'Neill × Contemporary Art Centre",
+   "start": "2026-11-05",
+   "time": "18:00",
+   "venue": "CAC cinema hall, Vokiečių g. 2",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "lit": true,
+   "lang": "en",
+   "price": "Free, arrive early",
+   "desc": "The curator presents his book Beyond Caring with readings and images, then a conversation with the audience.",
+   "url": "https://www.vilnius-events.lt/en/event/critical-proximity-paul-o-neill-contemporary-art-centre/",
+   "pick": true
+  },
+  {
+   "title": "Istorijų pasakojimo salonas #65: Kūnas (Storytelling Salon: Body)",
+   "start": "2026-11-03",
+   "time": "19:00",
+   "venue": "VU Small Aula café, Universiteto g. 3 (enter via the Philology gates)",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "lit": true,
+   "lang": "lt",
+   "price": "Free, registration required",
+   "desc": "An open evening of true personal stories, this time about the body: scars, illness, recovery and self-acceptance.",
+   "url": "https://www.vilnius-events.lt/en/event/lt-istorij-pasakojimo-salionas-65-k-nas/"
+  },
+  {
+   "title": "Paneigusi žemės trauką (Defying Gravity): book launch about actress Valentina Leonavičiūtė",
+   "start": "2026-11-03",
+   "time": "17:30",
+   "venue": "Kruonis library",
+   "town": "Kruonis",
+   "area": "region",
+   "category": "art",
+   "lit": true,
+   "lang": "lt",
+   "desc": "Kristupas Antanaitis presents his book about the actress Valentina Leonavičiūtė.",
+   "url": "https://kaisiadorysinfo.lt/renginiai/paneigusi-zemes-trauka-aktore-valentina-leonaviciute-kristupo-antanaicio-knygos-pristatymas/"
+  },
+  {
+   "title": "Ką šneka drobės (What the Canvases Say): Ojaras Mašidlauskas exhibition opening",
+   "start": "2026-11-04",
+   "venue": "Trakai district",
+   "town": "Trakai",
+   "area": "region",
+   "category": "art",
+   "price": "Free",
+   "desc": "Opening of a painting exhibition by Ojaras Mašidlauskas.",
+   "url": "https://www.facebook.com/events/29272137312390898/"
+  },
+  {
+   "title": "Meeting with journalist Orijus Gasanovas",
+   "start": "2026-11-19",
+   "venue": "Trakai district library",
+   "town": "Trakai",
+   "area": "region",
+   "category": "art",
+   "lit": true,
+   "lang": "lt",
+   "desc": "The journalist and travel writer talks about his books and travels.",
+   "url": "https://cityquest.lt/lapkricio-renginiu-gidas-traku-rajone-nuo-susitikimu-su-zvaigzdemis-iki-magijos-nuotykiu/"
+  },
+  {
+   "title": "Kur yra Nemunas? (Where Is the Nemunas?)",
+   "start": "2026-10-30",
+   "end": "2026-11-08",
+   "venue": "National Gallery of Art",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "desc": "An exhibition cycle within the gallery's 20th-century Lithuanian art collection, in its last days.",
+   "url": "https://www.lndm.lt/kur-yra-nemunas-parodu-ciklas-xx-a-pirmosios-puses-lietuvos-dailes-ekspozicijoje/"
+  },
+  {
+   "title": "Vladas Švipas: architect from the Bauhaus",
+   "start": "2026-10-09",
+   "end": "2027-01-17",
+   "venue": "National Gallery of Art",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "desc": "An exhibition on the Lithuanian architect who trained at the Bauhaus.",
+   "url": "https://www.lndm.lt/ndg/"
+  },
+  {
+   "title": "Pradžioje buvo linija (In the Beginning Was the Line)",
+   "start": "2026-06-23",
+   "end": "2027-01-10",
+   "venue": "Vilnius Picture Gallery",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "desc": "An exhibition of drawing at the Vilnius Picture Gallery, which also shows a disputed Caravaggio until May 2027.",
+   "url": "https://www.lndm.lt/vpg/"
+  },
+  {
+   "title": "Me | The Other: photographs of writers by Daiva Kairevičiūtė",
+   "start": "2026-05-27",
+   "end": "2026-12-31",
+   "venue": "Vilnius Literary House, Šv. Jono g. 11",
+   "town": "Vilnius",
+   "area": "vilnius",
+   "category": "art",
+   "desc": "Portraits of Lithuanian writers at the city's literary house.",
+   "url": "https://www.vilniusliterature.lt/en/exhibition-of-photographs-of-writers-by-daiva-kaireviciute/"
   }
  ]
 }
