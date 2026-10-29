@@ -66,11 +66,12 @@ const AREAS = { near: "Near home: Elektrėnai & Vievis", region: "Around the reg
 const CATS = { music: "Music", family: "Family", nature: "Nature", art: "Art", markets: "Markets", sports: "Sports" };
 const ART_GROUPS = [["Exhibitions & art", e => !e.lit], ["Literature in English", e => e.lit && e.lang === "en"], ["Literature in Lithuanian", e => e.lit && e.lang !== "en"]];
 const LANGS = { en: "In English", lt: "In Lithuanian" };
-const DAY = 864e5;
 const state = { tab: "week", cat: "" };
 try { const t = localStorage.getItem("events-tab"); if (t === "week" || t === "month") state.tab = t; } catch (e) {}
 
 const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+// Calendar-day arithmetic, so ranges stay whole days across DST changes.
+const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 const fmt = (d, o) => d.toLocaleDateString("en-GB", o);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -81,11 +82,12 @@ fetch("events.json", { cache: "no-cache" }).then(r => r.json()).then(d => { data
 function range() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const start = new Date(Math.max(today, parse(data.from)));
-  const end = new Date(+start + (state.tab === "week" ? 6 : 29) * DAY);
+  const end = addDays(start, state.tab === "week" ? 6 : 29);
   return [start, end];
 }
 
 function render() {
+  if (!data) return;
   const [start, end] = range();
   document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
   document.getElementById("range").textContent =
@@ -93,12 +95,13 @@ function render() {
 
   const inRange = data.events.filter(e => parse(e.start) <= end && parse(e.end || e.start) >= start);
   const present = Object.keys(CATS).filter(c => inRange.some(e => e.category === c));
-  if (state.cat && !present.includes(state.cat)) state.cat = "";
+  // Fall back to All while the chosen category is empty, but remember it for other tabs.
+  const cat = present.includes(state.cat) ? state.cat : "";
   document.getElementById("chips").innerHTML =
-    `<button class="chip" role="tab" data-cat="" aria-selected="${!state.cat}">All</button>` +
-    present.map(c => `<button class="chip" role="tab" data-cat="${c}" aria-selected="${state.cat === c}">${CATS[c]}</button>`).join("");
+    `<button class="chip" role="tab" data-cat="" aria-selected="${!cat}">All</button>` +
+    present.map(c => `<button class="chip" role="tab" data-cat="${c}" aria-selected="${cat === c}">${CATS[c]}</button>`).join("");
 
-  const shown = inRange.filter(e => !state.cat || e.category === state.cat)
+  const shown = inRange.filter(e => !cat || e.category === cat)
     .sort((a, b) => Math.max(parse(a.start), start) - Math.max(parse(b.start), start) || (a.time || "").localeCompare(b.time || ""));
 
   let html = "";
@@ -109,7 +112,7 @@ function render() {
   if (state.tab === "week") html += notes.map(n => `<div class="note">${esc(n.text)}${n.url ? ` <a href="${esc(n.url)}">More</a>` : ""}</div>`).join("");
 
   if (!shown.length) html += '<p class="empty">Nothing in this category for these dates.</p>';
-  else if (state.cat === "art") {
+  else if (cat === "art") {
     for (const [name, test] of ART_GROUPS) {
       const list = shown.filter(test);
       html += `<h2 class="area">${name}</h2>` + (list.length ? list.map(e => card(e, start, true)).join("") : '<p class="empty">Nothing listed for these dates.</p>');
@@ -124,7 +127,7 @@ function render() {
     let wk = null;
     for (const e of shown) {
       const d = new Date(Math.max(parse(e.start), start));
-      const monday = new Date(+d - ((d.getDay() + 6) % 7) * DAY);
+      const monday = addDays(d, -((d.getDay() + 6) % 7));
       if (+monday !== wk) { wk = +monday; html += `<h3 class="week">Week of ${fmt(monday, { day: "numeric", month: "long" })}</h3>`; }
       html += card(e, start, true);
     }
