@@ -21,9 +21,10 @@ h1 { font-size: 28px; line-height: 1.2; margin: 8px 0 4px; }
 .tab { appearance: none; border: 0; background: none; font: inherit; font-weight: 600; color: var(--muted); padding: 10px 14px; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
 .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
 .range { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
-.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; padding: 4px; background: var(--accent-soft); border-radius: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; padding: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
 .chip { appearance: none; flex: 1 1 auto; font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 6px; border: 0; background: none; color: var(--muted); cursor: pointer; }
-.chip[aria-selected="true"] { background: var(--card); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.chip:hover { color: var(--ink); }
+.chip[aria-selected="true"] { background: var(--accent); color: #fff; font-weight: 600; }
 .picks { background: var(--pick); border-left: 4px solid var(--pick-edge); border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
 .picks h2 { font-size: 15px; margin: 0 0 6px; }
 .picks ul { margin: 0; padding-left: 18px; font-size: 15px; }
