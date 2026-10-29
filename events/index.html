@@ -63,7 +63,7 @@ footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
 
 <script>
 const AREAS = { near: "Near home: Elektrėnai & Vievis", region: "Around the region: Trakai · Kaišiadorys · Kernavė · Neris Park", vilnius: "Vilnius" };
-const CATS = { music: "Music", art: "Art & literature", family: "Family", nature: "Nature", markets: "Markets", sports: "Sports" };
+const CATS = { music: "Music", family: "Family", art: "Art", markets: "Markets", sports: "Sports", nature: "Nature" };
 const ART_GROUPS = [["Exhibitions & art", e => !e.lit], ["Literature in English", e => e.lit && e.lang === "en"], ["Literature in Lithuanian", e => e.lit && e.lang !== "en"]];
 const LANGS = { en: "In English", lt: "In Lithuanian" };
 const DAY = 864e5;
