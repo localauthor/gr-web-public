@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30T11:04:01+02:00",
+ "generated": "2026-10-30T12:35:47+02:00",
  "issues": [
   {
    "title": "Daily Digest [Oct 30]",
@@ -466,6 +466,24 @@
      "source": "The New Yorker",
      "url": "https://www.newyorker.com/magazine/2026/10/26/the-bari-weiss-effect-on-60-minutes",
      "read": false
+    },
+    {
+     "title": "“The Woodcutter”",
+     "source": "The New Yorker",
+     "url": "https://www.newyorker.com/magazine/2026/10/26/the-woodcutter-nick-laird-poem",
+     "read": false
+    },
+    {
+     "title": "“Shortcut”",
+     "source": "The New Yorker",
+     "url": "https://www.newyorker.com/magazine/2026/10/26/shortcut-diane-mehta-poem",
+     "read": false
+    },
+    {
+     "title": "The Crossword: Tuesday, October 13, 2026",
+     "source": "The New Yorker",
+     "url": "https://www.newyorker.com/puzzles-and-games-dept/crossword/2026/10/13",
+     "read": false
     }
    ]
   },
@@ -663,6 +681,18 @@
      "title": "“Life”",
      "source": "The New Yorker",
      "url": "https://www.newyorker.com/magazine/2021/06/28/life-anne-carson-poem",
+     "read": false
+    },
+    {
+     "title": "“Lines”",
+     "source": "The New Yorker",
+     "url": "https://www.newyorker.com/1997/03/31/lines-anne-carson-poem",
+     "read": false
+    },
+    {
+     "title": "The Crossword: Wednesday, October 7, 2026",
+     "source": "The New Yorker",
+     "url": "https://www.newyorker.com/puzzles-and-games-dept/crossword/2026/10/07",
      "read": false
     }
    ]
