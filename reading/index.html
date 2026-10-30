@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reading | Grant Rosson</title>
-<meta name="description" content="What Grant Rosson is reading now, has on the shelf, means to read next and has finished lately.">
+<meta name="description" content="What Grant Rosson is reading now, has on the shelf, means to read next and has finished lately, and the articles he has read.">
 <link rel="icon" href="/favicon.png">
 <style>
 :root {
@@ -32,14 +32,34 @@ hr.div { border: 0; border-top: 3px double var(--muted); opacity: .45; margin: 4
 .empty { color: var(--muted); font-size: 14px; padding: 10px 0; }
 footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
 footer button { appearance: none; border: 0; background: none; font: inherit; color: var(--accent); padding: 0; cursor: pointer; text-decoration: underline; }
+.tabs { display: flex; gap: 22px; margin: 14px 0 6px; border-bottom: 1px solid var(--line); }
+.tabs a { text-decoration: none; color: var(--muted); padding: 6px 0; margin-bottom: -1px; border-bottom: 2px solid transparent; }
+.tabs a.on { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.search { width: 100%; font: inherit; font-size: 15px; padding: 7px 10px; margin: 14px 0 0; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
+.art { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.art .source { color: var(--muted); font-size: 14px; }
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Reading</h1>
-  <p class="sub">What I'm reading now, keep on the shelf, mean to read next and have finished lately.</p>
-  <div id="out"><p class="empty">Loading…</p></div>
-  <footer id="foot"></footer>
+  <nav class="tabs">
+    <a href="#books" data-tab="books">Books</a>
+    <a href="#read" data-tab="read">What I've read</a>
+    <a href="#all" data-tab="all">All articles</a>
+  </nav>
+  <section id="tab-books">
+    <p class="sub">What I'm reading now, keep on the shelf, mean to read next and have finished lately.</p>
+    <div id="out"><p class="empty">Loading…</p></div>
+    <footer id="foot"></footer>
+  </section>
+  <section id="tab-articles" hidden>
+    <p class="sub" id="arts-sub"></p>
+    <input class="search" id="search" type="search" placeholder="Search titles and publications" autocomplete="off">
+    <div id="arts-out"><p class="empty">Loading…</p></div>
+    <footer id="arts-foot"></footer>
+  </section>
 </div>
 
 <script>
@@ -76,6 +96,52 @@ function item(i) {
     <div>${title}${i.author ? ` <span class="author">${esc(i.author)}</span>` : ""}
     ${stats ? `<div class="stats">[ ${stats} ]</div>` : ""}</div></label>`;
 }
+
+// Articles: every one delivered to me, from my digests and magazines, and
+// which of them I read. articles.json is written by newsfetch.
+let articles = null;
+const SUBS = {
+  read: "Articles I've read, newest first.",
+  all: "Every article that has come my way, from my daily digest and the magazines I take, newest first.",
+};
+
+function showTab() {
+  const tab = ["read", "all"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "books";
+  document.querySelectorAll(".tabs a").forEach(a => a.classList.toggle("on", a.dataset.tab === tab));
+  document.getElementById("tab-books").hidden = tab !== "books";
+  document.getElementById("tab-articles").hidden = tab === "books";
+  if (tab === "books") return;
+  document.getElementById("arts-sub").textContent = SUBS[tab];
+  if (articles) renderArticles(tab);
+  else fetch("articles.json", { cache: "no-cache" }).then(r => r.json()).then(d => { articles = d; renderArticles(tab); })
+    .catch(() => { document.getElementById("arts-out").innerHTML = '<p class="empty">Couldn\'t load the articles.</p>'; });
+}
+
+function renderArticles(tab) {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const match = a => !q || (a.title + " " + a.source).toLowerCase().includes(q);
+  let total = 0;
+  const html = articles.issues.map(issue => {
+    const list = issue.articles.filter(a => (tab === "all" || a.read) && match(a));
+    total += list.length;
+    if (!list.length) return "";
+    const day = new Date(issue.delivered + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    return `<h2>${esc(day)} <span class="n">${esc(issue.title.replace(/\s*\[.*\]$/, ""))}</span></h2>` + list.map(a => `<div class="art">${
+      a.url ? `<a class="title" href="${esc(a.url)}">${esc(a.title)}</a>` : `<span class="title">${esc(a.title)}</span>`}${
+      a.source ? ` <span class="source">${esc(a.source)}</span>` : ""}</div>`).join("");
+  }).join("");
+  document.getElementById("arts-out").innerHTML = html || `<p class="empty">${q ? "Nothing matches." : "Nothing yet."}</p>`;
+  const d = new Date(articles.generated);
+  document.getElementById("arts-foot").textContent = `${total} article${total === 1 ? "" : "s"}. Updated ` +
+    d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) + ".";
+}
+
+document.getElementById("search").addEventListener("input", () => {
+  const tab = location.hash.slice(1);
+  if (articles && (tab === "read" || tab === "all")) renderArticles(tab);
+});
+window.addEventListener("hashchange", showTab);
+showTab();
 
 document.addEventListener("change", ev => {
   const box = ev.target.closest("input[data-key]"); if (!box) return;
