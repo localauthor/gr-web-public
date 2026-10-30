@@ -136,9 +136,14 @@ function renderArticles(tab) {
     d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) + ".";
 }
 
+// Redrawn once typing pauses, since the list only grows
+let typing;
 document.getElementById("search").addEventListener("input", () => {
-  const tab = location.hash.slice(1);
-  if (articles && (tab === "read" || tab === "all")) renderArticles(tab);
+  clearTimeout(typing);
+  typing = setTimeout(() => {
+    const tab = location.hash.slice(1);
+    if (articles && (tab === "read" || tab === "all")) renderArticles(tab);
+  }, 150);
 });
 window.addEventListener("hashchange", showTab);
 showTab();
