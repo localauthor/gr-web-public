@@ -1,6 +1,72 @@
 {
- "generated": "2026-10-31T06:01:18+02:00",
+ "generated": "2026-11-01T06:01:53+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 01]",
+   "delivered": "2026-11-01",
+   "articles": [
+    {
+     "title": "A Twist of Yarn",
+     "source": "Harper’s Magazine",
+     "url": "https://harpers.org/archive/2026/11/twist-yarn-annie-dillard",
+     "read": false
+    },
+    {
+     "title": "Making Brontë into myth",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature-by-region/british-literature/charlotte-bronte-and-elizabeth-gaskell-susan-dunne-elizabeth-and-ruth-livi-michael-book-reviews-annette-federico",
+     "read": false
+    },
+    {
+     "title": "A fascination with space",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/arts/art-history/dorothea-tanning-alyce-mahon-book-review-charles-darwent",
+     "read": false
+    },
+    {
+     "title": "An inside outsider",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/arts/art-history/lynne-tillman-book-review-aaron-peck",
+     "read": false
+    },
+    {
+     "title": "Why is serial fiction having a moment?",
+     "source": "Literary Hub",
+     "url": "https://lithub.com/why-is-serial-fiction-having-a-moment/",
+     "read": false
+    },
+    {
+     "title": "Albrecht Dürer’s Monument to the Vanquished Peasants (1525)",
+     "source": "The Public Domain Review",
+     "url": "https://publicdomainreview.org/collection/monument-to-the-vanquished-peasants",
+     "read": false
+    },
+    {
+     "title": "Jordan Kisner: The Vivisectors by Missouri Williams",
+     "source": "London Review of Books",
+     "url": "https://www.lrb.co.uk/the-paper/v48/n20/jordan-kisner/big-dead-rock",
+     "read": false
+    },
+    {
+     "title": "Miriam Dobson: The Oak and the Larch: A Forest History of Russia and Its Empires by Sophie Pinkham",
+     "source": "London Review of Books",
+     "url": "https://www.lrb.co.uk/the-paper/v48/n20/miriam-dobson/not-all-trees-are-useful",
+     "read": false
+    },
+    {
+     "title": "‘Being hated is very bracing’: Helen Garner on surviving three marriages and being called a ‘rotten feminist’",
+     "source": "Guardian Books",
+     "url": "https://www.theguardian.com/books/2026/oct/31/being-hated-is-very-bracing-helen-garner-on-surviving-three-marriages-and-being-called-a-rotten-feminist",
+     "read": false
+    },
+    {
+     "title": "The Great Bernard Williams",
+     "source": "3 Quarks Daily",
+     "url": "https://3quarksdaily.com/3quarksdaily/2026/10/the-great-bernard-williams.html",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Oct 31]",
    "delivered": "2026-10-31",
@@ -177,7 +243,7 @@
      "title": "Maureen N. McLane: This Poor Book by Fanny Howe",
      "source": "London Review of Books",
      "url": "https://www.lrb.co.uk/the-paper/v48/n20/maureen-n.-mclane/i-would-like-more-gods",
-     "read": false
+     "read": true
     },
     {
      "title": "Fraser MacDonald: Borrowed Land: A Highland Story by Kapka Kassabova",
@@ -237,7 +303,7 @@
      "title": "Josef Koudelka’s Defining in Moment Prague",
      "source": "Aperture",
      "url": "https://aperture.org/editorial/josef-koudelka-68/",
-     "read": false
+     "read": true
     },
     {
      "title": "Deborah Friedell: American Scoundrel: Roy Cohn’s Dark Journey from Joe McCarthy to Donald Trump by Kai Bird with Susan Goldmark",
@@ -249,7 +315,7 @@
      "title": "Toril Moi: Fredric Jameson as Reader",
      "source": "London Review of Books",
      "url": "https://www.lrb.co.uk/the-paper/v48/n19/toril-moi/fredric-jameson-as-reader",
-     "read": false
+     "read": true
     },
     {
      "title": "Michael Wood: Zola’s Dream: Idealism on Trial by Claire White",
@@ -333,7 +399,7 @@
      "title": "The Artist Who Dined Among Lions",
      "source": "Hyperallergic",
      "url": "https://hyperallergic.com/the-artist-who-dined-among-lions/",
-     "read": false
+     "read": true
     },
     {
      "title": "Rejecting Enlightenment",
@@ -393,7 +459,7 @@
      "title": "Use and Reuse: Dancing Again with Robert Rauschenberg",
      "source": "Public Books",
      "url": "",
-     "read": false
+     "read": true
     },
     {
      "title": "Alone With a Book by Tessa Hadley review – an acclaimed writer’s cultural prescription",
@@ -519,7 +585,7 @@
      "title": "The Old-School Ambition of “The Brightness”",
      "source": "The New Yorker",
      "url": "https://www.newyorker.com/magazine/2026/10/26/the-brightness-chad-harbach-book-review",
-     "read": false
+     "read": true
     },
     {
      "title": "Louise Glück’s Life in Restaurants",
@@ -591,7 +657,7 @@
      "title": "Rebel Rebel (Kathryn Hughes)",
      "source": "New York Review of Books",
      "url": "",
-     "read": false
+     "read": true
     },
     {
      "title": "Unfinished Business (Meghan O’Gieblyn)",
@@ -603,7 +669,7 @@
      "title": "Vermeer’s Vanishing Act (Susan Tallman)",
      "source": "New York Review of Books",
      "url": "",
-     "read": false
+     "read": true
     },
     {
      "title": "How American Photography Was Forged in the Mines",
