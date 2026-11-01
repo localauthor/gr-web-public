@@ -42,6 +42,7 @@ h3.week { font-size: 15px; margin: 24px 0 4px; color: var(--muted); text-transfo
 .tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); font-weight: 700; margin-right: 6px; }
 .tag.lang { color: #fff; background: var(--accent); border-radius: 3px; padding: 0 5px; }
 .cal { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+.cal-day { font: inherit; font-size: 13px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 1px 4px; }
 .cal a, .cal button { appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .empty { color: var(--muted); font-size: 14px; padding: 10px 0; }
 footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
@@ -154,13 +155,21 @@ function card(e, start, showArea) {
     <span class="tag">${CATS[e.category] || ""}</span>${showArea ? `<span class="tag" style="color:var(--muted)">${e.area === "vilnius" ? "Vilnius" : esc(e.town)}</span>` : ""}${LANGS[e.lang] ? `<span class="tag lang">${LANGS[e.lang]}</span>` : ""}
     <div><a class="title" href="${esc(e.url)}">${esc(e.title)}</a></div>
     <div class="meta">${esc(meta)}</div><p class="desc">${esc(e.desc)}</p>
-    <p class="cal">Add to calendar: <a href="${esc(gcalUrl(e))}" target="_blank" rel="noopener">Google</a> · <button data-ics="${data.events.indexOf(e)}">Apple / Outlook</button></p></div></div>`;
+    ${calLinks(e, multi ? isoDay(d) : null)}</div></div>`;
 }
+
+// Multi-day events get a day picker, so the entry goes on the day you plan to go.
+function calLinks(e, day) {
+  const picker = day ? ` for <input type="date" class="cal-day" value="${day}" min="${day}" max="${e.end}" aria-label="Day to add">` : "";
+  return `<p class="cal">Add to calendar${picker || ":"} <a href="${esc(gcalUrl(e, day))}" target="_blank" rel="noopener">Google</a> · <button data-ics="${data.events.indexOf(e)}">Apple / Outlook</button></p>`;
+}
+const calDay = el => el.closest(".cal").querySelector(".cal-day")?.value || null;
 
 // Calendar entries. A plain "HH:MM" or "HH:MM–HH:MM" time on a one-day event becomes a
 // timed entry (2 hours if no end is given); anything else is an all-day entry, with the
-// time text kept in the description.
-function calTimes(e) {
+// time text kept in the description. With a day given, the entry is for that day only.
+function calTimes(e, day) {
+  if (day) e = { ...e, start: day, end: null };
   const ymd = s => s.replace(/-/g, "");
   const m = !e.end || e.end === e.start ? /^(\d{1,2}):(\d{2})(?:\s*[–-]\s*(\d{1,2}):(\d{2}))?$/.exec(e.time || "") : null;
   if (!m) return { allDay: true, start: ymd(e.start), end: ymd(isoDay(addDays(parse(e.end || e.start), 1))) };
@@ -179,15 +188,15 @@ const isoDay = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2,
 const calPlace = e => [e.venue, e.venue === e.town ? null : e.town].filter(Boolean).join(", ");
 const calDetails = (e, t) => [e.desc, t.allDay && e.time ? "Time: " + e.time : null, e.price ? "Price: " + e.price : null, e.url].filter(Boolean).join("\n\n");
 
-function gcalUrl(e) {
-  const t = calTimes(e);
+function gcalUrl(e, day) {
+  const t = calTimes(e, day);
   return "https://calendar.google.com/calendar/render?" + new URLSearchParams({
     action: "TEMPLATE", text: e.title, dates: t.start + "/" + t.end, details: calDetails(e, t), location: calPlace(e), ctz: "Europe/Vilnius",
   });
 }
 
-function icsFile(e) {
-  const t = calTimes(e);
+function icsFile(e, day) {
+  const t = calTimes(e, day);
   const text = s => String(s).replace(/[\\;,]/g, c => "\\" + c).replace(/\n/g, "\\n");
   const when = (k, v) => t.allDay ? `${k};VALUE=DATE:${v}` : `${k};TZID=Europe/Vilnius:${v}`;
   const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//grantrosson.com//Events//EN", "BEGIN:VEVENT",
@@ -218,10 +227,15 @@ document.getElementById("out").addEventListener("click", ev => {
   const b = ev.target.closest("[data-ics]"); if (!b) return;
   const e = data.events[b.dataset.ics];
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([icsFile(e)], { type: "text/calendar" }));
+  a.href = URL.createObjectURL(new Blob([icsFile(e, calDay(b))], { type: "text/calendar" }));
   a.download = e.title.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 50) + ".ics";
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
+document.getElementById("out").addEventListener("change", ev => {
+  if (!ev.target.matches(".cal-day")) return;
+  const p = ev.target.closest(".cal"), b = p.querySelector("[data-ics]");
+  p.querySelector("a").href = gcalUrl(data.events[b.dataset.ics], ev.target.value || null);
 });
 document.getElementById("chips").addEventListener("click", ev => {
   const b = ev.target.closest(".chip"); if (!b) return;
