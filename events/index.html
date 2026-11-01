@@ -159,14 +159,10 @@ function card(e, start, showArea) {
 
 // Calendar entries. A plain "HH:MM" or "HH:MM–HH:MM" time on a one-day event becomes a
 // timed entry (2 hours if no end is given); anything else is an all-day entry, with the
-// time text kept in the description. Runs longer than a week (exhibitions, fairs) become a
-// single all-day reminder on the closing day rather than a block across the calendar.
-const longRun = e => e.end && parse(e.end) - parse(e.start) > 7 * 864e5;
-const calTitle = e => (longRun(e) ? "Last day: " : "") + e.title;
+// time text kept in the description.
 function calTimes(e) {
   const ymd = s => s.replace(/-/g, "");
   const m = !e.end || e.end === e.start ? /^(\d{1,2}):(\d{2})(?:\s*[–-]\s*(\d{1,2}):(\d{2}))?$/.exec(e.time || "") : null;
-  if (longRun(e)) return { allDay: true, start: ymd(e.end), end: ymd(isoDay(addDays(parse(e.end), 1))) };
   if (!m) return { allDay: true, start: ymd(e.start), end: ymd(isoDay(addDays(parse(e.end || e.start), 1))) };
   const s = parse(e.start); s.setHours(+m[1], +m[2]);
   let en;
@@ -186,7 +182,7 @@ const calDetails = (e, t) => [e.desc, t.allDay && e.time ? "Time: " + e.time : n
 function gcalUrl(e) {
   const t = calTimes(e);
   return "https://calendar.google.com/calendar/render?" + new URLSearchParams({
-    action: "TEMPLATE", text: calTitle(e), dates: t.start + "/" + t.end, details: calDetails(e, t), location: calPlace(e), ctz: "Europe/Vilnius",
+    action: "TEMPLATE", text: e.title, dates: t.start + "/" + t.end, details: calDetails(e, t), location: calPlace(e), ctz: "Europe/Vilnius",
   });
 }
 
@@ -198,7 +194,7 @@ function icsFile(e) {
     `UID:${t.start}-${e.title.replace(/[^\w]+/g, "-").slice(0, 40)}@grantrosson.com`,
     "DTSTAMP:" + new Date().toISOString().replace(/[-:]|\.\d+/g, ""),
     when("DTSTART", t.start), when("DTEND", t.end),
-    "SUMMARY:" + text(calTitle(e)), "LOCATION:" + text(calPlace(e)), "DESCRIPTION:" + text(calDetails(e, t)), "URL:" + e.url,
+    "SUMMARY:" + text(e.title), "LOCATION:" + text(calPlace(e)), "DESCRIPTION:" + text(calDetails(e, t)), "URL:" + e.url,
     "END:VEVENT", "END:VCALENDAR"];
   // Fold lines at 74 UTF-8 bytes (RFC 5545), never inside a character.
   const fold = l => {
