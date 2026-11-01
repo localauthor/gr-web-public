@@ -41,6 +41,8 @@ h3.week { font-size: 15px; margin: 24px 0 4px; color: var(--muted); text-transfo
 .desc { font-size: 14px; margin: 0; }
 .tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); font-weight: 700; margin-right: 6px; }
 .tag.lang { color: #fff; background: var(--accent); border-radius: 3px; padding: 0 5px; }
+.cal { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+.cal a, .cal button { appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .empty { color: var(--muted); font-size: 14px; padding: 10px 0; }
 footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
 </style>
@@ -151,13 +153,79 @@ function card(e, start, showArea) {
   return `<div class="ev"><div class="date"><div class="d">${d.getDate()}</div><div class="w">${fmt(d, { weekday: "short" })}</div></div><div>
     <span class="tag">${CATS[e.category] || ""}</span>${showArea ? `<span class="tag" style="color:var(--muted)">${e.area === "vilnius" ? "Vilnius" : esc(e.town)}</span>` : ""}${LANGS[e.lang] ? `<span class="tag lang">${LANGS[e.lang]}</span>` : ""}
     <div><a class="title" href="${esc(e.url)}">${esc(e.title)}</a></div>
-    <div class="meta">${esc(meta)}</div><p class="desc">${esc(e.desc)}</p></div></div>`;
+    <div class="meta">${esc(meta)}</div><p class="desc">${esc(e.desc)}</p>
+    <p class="cal">Add to calendar: <a href="${esc(gcalUrl(e))}" target="_blank" rel="noopener">Google</a> · <button data-ics="${data.events.indexOf(e)}">Apple / Outlook</button></p></div></div>`;
+}
+
+// Calendar entries. A plain "HH:MM" or "HH:MM–HH:MM" time on a one-day event becomes a
+// timed entry (2 hours if no end is given); anything else is an all-day entry, with the
+// time text kept in the description. Runs longer than a week (exhibitions, fairs) become a
+// single all-day reminder on the closing day rather than a block across the calendar.
+const longRun = e => e.end && parse(e.end) - parse(e.start) > 7 * 864e5;
+const calTitle = e => (longRun(e) ? "Last day: " : "") + e.title;
+function calTimes(e) {
+  const ymd = s => s.replace(/-/g, "");
+  const m = !e.end || e.end === e.start ? /^(\d{1,2}):(\d{2})(?:\s*[–-]\s*(\d{1,2}):(\d{2}))?$/.exec(e.time || "") : null;
+  if (longRun(e)) return { allDay: true, start: ymd(e.end), end: ymd(isoDay(addDays(parse(e.end), 1))) };
+  if (!m) return { allDay: true, start: ymd(e.start), end: ymd(isoDay(addDays(parse(e.end || e.start), 1))) };
+  const s = parse(e.start); s.setHours(+m[1], +m[2]);
+  let en;
+  if (m[3]) {
+    en = parse(e.start);
+    if (+m[3] * 60 + +m[4] <= +m[1] * 60 + +m[2]) en = addDays(en, 1); // ends after midnight
+    en.setHours(+m[3], +m[4]);
+  }
+  else en = new Date(s.getFullYear(), s.getMonth(), s.getDate(), s.getHours() + 2, s.getMinutes());
+  const stamp = d => isoDay(d).replace(/-/g, "") + "T" + String(d.getHours()).padStart(2, "0") + String(d.getMinutes()).padStart(2, "0") + "00";
+  return { allDay: false, start: stamp(s), end: stamp(en) };
+}
+const isoDay = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const calPlace = e => [e.venue, e.venue === e.town ? null : e.town].filter(Boolean).join(", ");
+const calDetails = (e, t) => [e.desc, t.allDay && e.time ? "Time: " + e.time : null, e.price ? "Price: " + e.price : null, e.url].filter(Boolean).join("\n\n");
+
+function gcalUrl(e) {
+  const t = calTimes(e);
+  return "https://calendar.google.com/calendar/render?" + new URLSearchParams({
+    action: "TEMPLATE", text: calTitle(e), dates: t.start + "/" + t.end, details: calDetails(e, t), location: calPlace(e), ctz: "Europe/Vilnius",
+  });
+}
+
+function icsFile(e) {
+  const t = calTimes(e);
+  const text = s => String(s).replace(/[\\;,]/g, c => "\\" + c).replace(/\n/g, "\\n");
+  const when = (k, v) => t.allDay ? `${k};VALUE=DATE:${v}` : `${k};TZID=Europe/Vilnius:${v}`;
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//grantrosson.com//Events//EN", "BEGIN:VEVENT",
+    `UID:${t.start}-${e.title.replace(/[^\w]+/g, "-").slice(0, 40)}@grantrosson.com`,
+    "DTSTAMP:" + new Date().toISOString().replace(/[-:]|\.\d+/g, ""),
+    when("DTSTART", t.start), when("DTEND", t.end),
+    "SUMMARY:" + text(calTitle(e)), "LOCATION:" + text(calPlace(e)), "DESCRIPTION:" + text(calDetails(e, t)), "URL:" + e.url,
+    "END:VEVENT", "END:VCALENDAR"];
+  // Fold lines at 74 UTF-8 bytes (RFC 5545), never inside a character.
+  const fold = l => {
+    let out = "", n = 0;
+    for (const ch of l) {
+      const b = new TextEncoder().encode(ch).length;
+      if (n + b > 74) { out += "\r\n "; n = 1; }
+      out += ch; n += b;
+    }
+    return out;
+  };
+  return lines.map(fold).join("\r\n") + "\r\n";
 }
 
 document.querySelector(".tabs").addEventListener("click", ev => {
   const b = ev.target.closest(".tab"); if (!b) return;
   state.tab = b.dataset.tab; try { localStorage.setItem("events-tab", state.tab); } catch (e) {}
   render();
+});
+document.getElementById("out").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-ics]"); if (!b) return;
+  const e = data.events[b.dataset.ics];
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([icsFile(e)], { type: "text/calendar" }));
+  a.download = e.title.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 50) + ".ics";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
 document.getElementById("chips").addEventListener("click", ev => {
   const b = ev.target.closest(".chip"); if (!b) return;
