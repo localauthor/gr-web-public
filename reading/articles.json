@@ -1,6 +1,210 @@
 {
- "generated": "2026-11-01T06:01:53+02:00",
+ "generated": "2026-11-02T06:02:02+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 02]",
+   "delivered": "2026-11-02",
+   "articles": [
+    {
+     "title": "James Meek: Across 8 Mile",
+     "source": "London Review of Books",
+     "url": "https://www.lrb.co.uk/the-paper/v48/n20/james-meek/across-8-mile",
+     "read": false
+    },
+    {
+     "title": "Nicholas Spice: Music’s Odyssey: An Invitation to Western Classical Music by Robin Holloway",
+     "source": "London Review of Books",
+     "url": "https://www.lrb.co.uk/the-paper/v48/n20/nicholas-spice/eat-your-thesaurus-barthes",
+     "read": false
+    },
+    {
+     "title": "‘Looming stone towers like Maya temples’: a hike through Snowdonia’s slate country",
+     "source": "Guardian Travel",
+     "url": "https://www.theguardian.com/travel/2026/oct/29/snowdonia-slate-trail-walk-north-wales",
+     "read": false
+    },
+    {
+     "title": "Back to the Future (Fintan O’Toole)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/11/19/back-to-the-future-andy-burnham-fintan-otoole/",
+     "read": false
+    },
+    {
+     "title": "Me Too in the Middle Ages (Erin Maglaque)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/11/19/me-too-in-the-middle-ages-justice-for-jehanne/",
+     "read": false
+    },
+    {
+     "title": "Cold opening",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/fiction/white-elephant-jeyamohan-book-review-hirsh-sawhney",
+     "read": false
+    },
+    {
+     "title": "Love at first bite",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/vampire-tales-nick-groom-book-review-a-k-blakemore",
+     "read": false
+    },
+    {
+     "title": "“Earth Not a Globe”: Parallax’s Zetetic Astronomy (1865)",
+     "source": "The Public Domain Review",
+     "url": "https://publicdomainreview.org/collection/zetetic-astronomy",
+     "read": false
+    },
+    {
+     "title": "Mono by Laura Parker",
+     "source": "The Clearing",
+     "url": "https://www.littletoller.co.uk/the-clearing/mono-by-laura-parker/",
+     "read": false
+    },
+    {
+     "title": "Like many authors, I’m bombarded by scam fan mail. I wasn’t prepared for what would happen when I wrote back",
+     "source": "Guardian Books",
+     "url": "https://www.theguardian.com/books/2026/nov/01/like-many-authors-im-bombarded-by-scam-fan-mail-i-wasnt-prepared-for-what-would-happen-when-i-wrote-back",
+     "read": false
+    }
+   ]
+  },
+  {
+   "title": "The New Yorker Magazine [Nov 02]",
+   "delivered": "2026-11-02",
+   "articles": [
+    {
+     "title": "Spooky-Season Theatre to Chill You to the Bone",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/culture/goings-on/spooky-season-theatre-to-chill-you-to-the-bone",
+     "read": false
+    },
+    {
+     "title": "Andre D. Wagner’s Eye for the Photo-Ready",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/culture/photo-booth/andre-d-wagners-eye-for-the-photo-ready",
+     "read": false
+    },
+    {
+     "title": "The Republicans’ Remarkably Bad Midterm Campaigns",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/the-republicans-remarkably-bad-midterm-campaigns",
+     "read": false
+    },
+    {
+     "title": "For Bob Iger, That’s the Way It Is",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/for-bob-iger-thats-the-way-it-is",
+     "read": false
+    },
+    {
+     "title": "A Pickpocket’s Guide to New York",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/a-pickpockets-guide-to-new-york",
+     "read": false
+    },
+    {
+     "title": "Daniel Humm’s Home Décor",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/daniel-humms-home-decor",
+     "read": false
+    },
+    {
+     "title": "From the Battalion to Broadway",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/from-the-battalion-to-broadway",
+     "read": false
+    },
+    {
+     "title": "Charles Kushner and the MAGA Ambassador’s Playbook",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/charles-kushner-and-the-maga-ambassadors-playbook",
+     "read": false
+    },
+    {
+     "title": "How Jim Morrison Surmounted Tragedy and Skied Down Everest",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/how-jim-morrison-surmounted-tragedy-and-skied-down-everest",
+     "read": false
+    },
+    {
+     "title": "The State Officials Defending the Midterms from the President",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/the-state-officials-defending-the-midterms-from-the-president",
+     "read": false
+    },
+    {
+     "title": "Did an Alternative-Medicine Guru Accidentally Kill Patients?",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/did-an-alternative-medicine-guru-accidentally-kill-patients",
+     "read": false
+    },
+    {
+     "title": "Cheeks",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/cheeks",
+     "read": false
+    },
+    {
+     "title": "“Wall Cano”",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/wall-cano-fiction-souvankham-thammavongsa",
+     "read": false
+    },
+    {
+     "title": "The Gold Rush and the Making of Modern America",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/the-rush-nathaniel-philbrick-book-review",
+     "read": false
+    },
+    {
+     "title": "Briefly Noted",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/auslander-frivolity-a-defense-may-we-feed-the-king-sophie-standing-there",
+     "read": false
+    },
+    {
+     "title": "Why the Broadway Musical Refuses to Die",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/broadway-in-black-and-white-john-mauceri-and-john-mcwhorter-book-review-lin-manuel-miranda-daniel-pollack-pelzner",
+     "read": false
+    },
+    {
+     "title": "The Victoria & Albert Museum Expands, Twice",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/the-victoria-and-albert-museum-expands-twice",
+     "read": false
+    },
+    {
+     "title": "Political Skirmishes in “Other Desert Cities” and “A Bright Room Called Day”",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/other-desert-cities-theatre-review-a-bright-room-called-day",
+     "read": false
+    },
+    {
+     "title": "The Fragile Unions of “Possible Love”",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/possible-love-movie-review",
+     "read": false
+    },
+    {
+     "title": "Waves, Cords",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/waves-cords-alfred-corn-poem",
+     "read": false
+    },
+    {
+     "title": "“ABCMIAMI”",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/magazine/2026/11/02/abcmiami-adrienne-raphel-poem",
+     "read": false
+    },
+    {
+     "title": "The Crossword: Monday, October 26, 2026",
+     "source": "The New Yorker Magazine",
+     "url": "https://www.newyorker.com/puzzles-and-games-dept/crossword/2026/10/26",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Nov 01]",
    "delivered": "2026-11-01",
@@ -9,7 +213,7 @@
      "title": "A Twist of Yarn",
      "source": "Harper’s Magazine",
      "url": "https://harpers.org/archive/2026/11/twist-yarn-annie-dillard",
-     "read": false
+     "read": true
     },
     {
      "title": "Making Brontë into myth",
@@ -21,7 +225,7 @@
      "title": "A fascination with space",
      "source": "Times Literary Supplement",
      "url": "https://www.the-tls.com/arts/art-history/dorothea-tanning-alyce-mahon-book-review-charles-darwent",
-     "read": false
+     "read": true
     },
     {
      "title": "An inside outsider",
@@ -51,7 +255,7 @@
      "title": "Miriam Dobson: The Oak and the Larch: A Forest History of Russia and Its Empires by Sophie Pinkham",
      "source": "London Review of Books",
      "url": "https://www.lrb.co.uk/the-paper/v48/n20/miriam-dobson/not-all-trees-are-useful",
-     "read": false
+     "read": true
     },
     {
      "title": "‘Being hated is very bracing’: Helen Garner on surviving three marriages and being called a ‘rotten feminist’",
@@ -207,19 +411,19 @@
      "title": "Drunk or sober, but especially drunk, Edgar Allan Poe acted against his own interests. He turned the mystery of why into art",
      "source": "Arts & Letters Daily",
      "url": "https://slate.com/culture/2026/10/edgar-allan-poe-poems-stories-most-influential-american-writer-death-horror-detective.html",
-     "read": true
+     "read": false
     },
     {
      "title": "In One Brief Moment All Eternity by Elif Shafak review – what Madame Bovary thought of Flaubert",
      "source": "Guardian Books",
      "url": "https://www.theguardian.com/books/2026/oct/28/in-one-brief-moment-all-eternity-by-elif-shafak-review-what-madame-bovary-thought-of-flaubert",
-     "read": true
+     "read": false
     },
     {
      "title": "Wonderful Weather: Floods and Foreboding in 17th-Century Britain",
      "source": "The Public Domain Review",
      "url": "https://publicdomainreview.org/essay/wonderful-weather",
-     "read": true
+     "read": false
     },
     {
      "title": "The Limits of Rationality: On Gulliver’s Travels at 300",
@@ -243,7 +447,7 @@
      "title": "Maureen N. McLane: This Poor Book by Fanny Howe",
      "source": "London Review of Books",
      "url": "https://www.lrb.co.uk/the-paper/v48/n20/maureen-n.-mclane/i-would-like-more-gods",
-     "read": true
+     "read": false
     },
     {
      "title": "Fraser MacDonald: Borrowed Land: A Highland Story by Kapka Kassabova",
@@ -255,7 +459,7 @@
      "title": "On repeat",
      "source": "Times Literary Supplement",
      "url": "https://www.the-tls.com/arts/art-history/writing-addiction-monet-water-lilies-essay-marie-darrieussecq",
-     "read": true
+     "read": false
     },
     {
      "title": "A patch of yellow wall",
@@ -357,7 +561,7 @@
      "title": "Indefensible Delights (Adam Thirlwell)",
      "source": "New York Review of Books",
      "url": "https://www.nybooks.com/articles/2026/11/05/indefensible-delights-what-we-did-before-our-moth-days-wallace-shawn/",
-     "read": true
+     "read": false
     },
     {
      "title": "Turning Around the Easel (Will Heinrich)",
@@ -387,7 +591,7 @@
      "title": "Hidden In Plain Sight: What It Meant to Unearth My Father’s Decades-Old FBI File",
      "source": "Literary Hub",
      "url": "https://lithub.com/hidden-in-plain-sight-what-it-meant-to-unearth-my-fathers-decades-old-fbi-file/",
-     "read": true
+     "read": false
     },
     {
      "title": "At 60, a Legendary LA Print Workshop Still Urges Us to Pay Attention",
@@ -399,7 +603,7 @@
      "title": "The Artist Who Dined Among Lions",
      "source": "Hyperallergic",
      "url": "https://hyperallergic.com/the-artist-who-dined-among-lions/",
-     "read": true
+     "read": false
     },
     {
      "title": "Rejecting Enlightenment",
@@ -429,7 +633,7 @@
      "title": "Iain Sinclair: Waymarking a Life. Test Centre Books Catalogue 20: J.H. Prynne (1936-2026) by Will Shutes",
      "source": "London Review of Books",
      "url": "",
-     "read": true
+     "read": false
     },
     {
      "title": "The Sheer Size of It All (Bill McKibben)",
@@ -453,13 +657,13 @@
      "title": "A wild sprite haunting the West Yorkshire moors? Not quite. Emily Brontë’s legend distracts from what we know about her life",
      "source": "Arts & Letters Daily",
      "url": "",
-     "read": false
+     "read": true
     },
     {
      "title": "Use and Reuse: Dancing Again with Robert Rauschenberg",
      "source": "Public Books",
      "url": "",
-     "read": true
+     "read": false
     },
     {
      "title": "Alone With a Book by Tessa Hadley review – an acclaimed writer’s cultural prescription",
@@ -585,7 +789,7 @@
      "title": "The Old-School Ambition of “The Brightness”",
      "source": "The New Yorker",
      "url": "https://www.newyorker.com/magazine/2026/10/26/the-brightness-chad-harbach-book-review",
-     "read": true
+     "read": false
     },
     {
      "title": "Louise Glück’s Life in Restaurants",
@@ -657,7 +861,7 @@
      "title": "Rebel Rebel (Kathryn Hughes)",
      "source": "New York Review of Books",
      "url": "",
-     "read": true
+     "read": false
     },
     {
      "title": "Unfinished Business (Meghan O’Gieblyn)",
@@ -669,7 +873,7 @@
      "title": "Vermeer’s Vanishing Act (Susan Tallman)",
      "source": "New York Review of Books",
      "url": "",
-     "read": true
+     "read": false
     },
     {
      "title": "How American Photography Was Forged in the Mines",
