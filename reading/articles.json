@@ -1,6 +1,42 @@
 {
- "generated": "2026-11-12T06:02:10+02:00",
+ "generated": "2026-11-14T06:03:24+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 14]",
+   "delivered": "2026-11-14",
+   "articles": [
+    {
+     "title": "‘Quest Without End’ (Tim Flannery)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/03/quest-without-end-the-savage-landscape-cal-flyn/",
+     "read": false
+    },
+    {
+     "title": "Nightmares of History (Michael Gorra)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/03/nightmares-of-history-the-newer-world-sebastian-barry/",
+     "read": false
+    },
+    {
+     "title": "Home and Away (Caroline Moorehead)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/03/home-and-away-a-very-cold-winter-cialente/",
+     "read": false
+    },
+    {
+     "title": "Editors were once heroic literary figures, spotting and nurturing hidden talent. Conglomeration in publishing has changed all that",
+     "source": "Arts & Letters Daily",
+     "url": "https://rosselliotbarkan.com/p/the-end-of-the-editor",
+     "read": false
+    },
+    {
+     "title": "Soldiers of Misfortune: The Drawings of Urs Graf the Elder",
+     "source": "The Public Domain Review",
+     "url": "https://publicdomainreview.org/essay/soldiers-of-misfortune",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Nov 12]",
    "delivered": "2026-11-12",
@@ -15,7 +51,7 @@
      "title": "Written treasures",
      "source": "Times Literary Supplement",
      "url": "https://www.the-tls.com/regular-features/in-brief/robert-louis-stevenson-glenda-norquay-book-review-hassan-akram",
-     "read": false
+     "read": true
     },
     {
      "title": "The elusive Dr Brookner",
@@ -33,7 +69,7 @@
      "title": "Super-Beast: The Mysterious Life of Saki",
      "source": "3 Quarks Daily",
      "url": "https://literaryreview.co.uk/laughter-in-the-margins",
-     "read": false
+     "read": true
     }
    ]
   },
@@ -117,13 +153,13 @@
      "title": "A Life in Fragments by Marina Litvinenko review – surviving Putin",
      "source": "Guardian Books",
      "url": "https://www.theguardian.com/books/2026/nov/04/a-life-in-fragments-by-marina-litvinenko-review-intimate-testimony-of-putins-poisonous-regime",
-     "read": false
+     "read": true
     },
     {
      "title": "Publications",
      "source": "Times Literary Supplement",
      "url": "https://www.the-tls.com/regular-features/in-brief/bookbindings-david-pearson-review-tom-cook",
-     "read": false
+     "read": true
     },
     {
      "title": "Warp and weft of history",
@@ -141,7 +177,7 @@
      "title": "In the medieval period, curiosity was seen as a largely vacuous interest in novel or forbidden information",
      "source": "Arts & Letters Daily",
      "url": "https://thereader.mitpress.mit.edu/curiosity-is-no-solo-act/",
-     "read": false
+     "read": true
     },
     {
      "title": "Celestial nuisance",
