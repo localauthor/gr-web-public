@@ -1,6 +1,42 @@
 {
- "generated": "2026-11-16T06:01:05+02:00",
+ "generated": "2026-11-17T06:01:33+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 17]",
+   "delivered": "2026-11-17",
+   "articles": [
+    {
+     "title": "Arthur Schomburg’s Legacy (Darryl Pinckney)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/03/arthur-schomburgs-legacy-black-studies-on-135th-street/",
+     "read": false
+    },
+    {
+     "title": "Reverence for All of It (Clare Carlisle)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/03/reverence-for-all-of-it-spinoza-atheist-nadler/",
+     "read": false
+    },
+    {
+     "title": "‘I was nervous before my solo stay in a remote Scottish Highlands cabin – but the solitude is glorious’",
+     "source": "Guardian Travel",
+     "url": "https://www.theguardian.com/travel/2026/nov/15/solo-stay-remote-cabin-highlands-scotland-rannoch-moor",
+     "read": false
+    },
+    {
+     "title": "Yahoos and Houyhnhnms",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/regular-features/commentary/gullivers-travels-at-300-essay-claude-rawson",
+     "read": false
+    },
+    {
+     "title": "In the silken, seductive, perilous literary world of Saki, wolves howl, cats speak, and epigrams are matters of life and death",
+     "source": "Arts & Letters Daily",
+     "url": "https://engelsbergideas.com/reviews/sakis-two-selves/",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "The New Yorker Magazine [Nov 16]",
    "delivered": "2026-11-16",
