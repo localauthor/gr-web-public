@@ -1,6 +1,54 @@
 {
- "generated": "2026-11-19T06:02:39+02:00",
+ "generated": "2026-11-21T06:01:53+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 21]",
+   "delivered": "2026-11-21",
+   "articles": [
+    {
+     "title": "John-Paul Stonard: At the Musée Picasso: On Kurt Schwitters",
+     "source": "London Review of Books",
+     "url": "https://www.lrb.co.uk/the-paper/v48/n21/john-paul-stonard/at-the-musee-picasso",
+     "read": false
+    },
+    {
+     "title": "Through the thirteenth-century windowpane",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/regular-features/in-brief/encounters-cathleen-a-fleck-elizabeth-lapina-richard-a-leson-vardit-ruth-shotten-book-review-sebastian-dows-miller",
+     "read": false
+    },
+    {
+     "title": "Abandoning a Cat by Haruki Murakami review – the Norwegian Wood author uncovers the story of his estranged father",
+     "source": "Guardian Books",
+     "url": "https://www.theguardian.com/books/2026/nov/19/abandoning-a-cat-by-haruki-murakami-review-an-intimate-meditation-on-family-and-memory",
+     "read": false
+    },
+    {
+     "title": "My grandmother was a seal",
+     "source": "Aeon",
+     "url": "https://aeon.co/essays/do-you-have-a-selkie-or-a-seal-in-the-family",
+     "read": false
+    },
+    {
+     "title": "Truisms, abstractions, and flatness. The key to admiring John Berger’s poetry is admitting that he has a tin ear",
+     "source": "Arts & Letters Daily",
+     "url": "https://www.poetryfoundation.org/articles/1838058/a-mere-140-pages",
+     "read": false
+    },
+    {
+     "title": "“A problem of our age is that literature — what Barthelme called art — is expected to justify itself; in Barthelme’s time, its value was more self-evident”",
+     "source": "Arts & Letters Daily",
+     "url": "https://harpers.org/archive/2026/12/too-much-sense-lauren-oyler-barthelme-postmodernism/",
+     "read": false
+    },
+    {
+     "title": "The Camera Obscura Turns Photography’s History Upside Down",
+     "source": "Aperture",
+     "url": "https://aperture.org/editorial/the-camera-obscura-turns-photographys-history-upside-down/",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Nov 19]",
    "delivered": "2026-11-19",
@@ -9,7 +57,7 @@
      "title": "Hal Foster: The Frenchmen: Or, My Life in Theory by Emily Eakin",
      "source": "London Review of Books",
      "url": "https://www.lrb.co.uk/the-paper/v48/n21/hal-foster/we-create-our-own-reality",
-     "read": false
+     "read": true
     },
     {
      "title": "Fiona Green: A Chorus of Ears: On ‘the Voice of the Poem’ by Denise Riley",
