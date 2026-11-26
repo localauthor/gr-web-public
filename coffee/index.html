@@ -49,6 +49,7 @@
     background: transparent; color: var(--muted); cursor: pointer;
   }
   .subtabs button[aria-selected="true"] { background: var(--card); color: var(--accent); box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+  #try .subtabs button { padding-left: 12px; padding-right: 12px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
   .card h3 { margin: 0; font-size: 1.1rem; }
   .row { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
@@ -130,7 +131,7 @@
 
 <header>
   <h1>Coffee Recipe Book</h1>
-  <p>AeroPress · Hario V60 · Baratza Encore · updated 26 Nov 2026</p>
+  <p>AeroPress · Hario V60 · Able Kone · Melitta #4 · Baratza Encore · updated 26 Nov 2026</p>
   <p>Beans: Löfbergs medium roast. For other beans, adjust the grind first.</p>
 </header>
 
@@ -153,10 +154,20 @@
 </section>
 
 <section id="try" hidden>
-  <p class="lead">Four untested recipes: three built from the log, one from competition.</p>
+  <p class="lead">Untested recipes to dial in. Sizes are grams of water.</p>
   <div class="subtabs" role="tablist" aria-label="Brewer">
     <button role="tab" aria-selected="false" data-brewer="aeropress">AeroPress</button>
     <button role="tab" aria-selected="true" data-brewer="v60">V60</button>
+    <button role="tab" aria-selected="false" data-brewer="kone">Kone</button>
+    <button role="tab" aria-selected="false" data-brewer="flat">Melitta #4</button>
+  </div>
+  <div>
+    <div class="subtabs sizes" role="tablist" aria-label="Size">
+      <button role="tab" aria-selected="true" data-size="cup">1 cup</button>
+      <button role="tab" aria-selected="false" data-size="450">450</button>
+      <button role="tab" aria-selected="false" data-size="600">600</button>
+      <button role="tab" aria-selected="false" data-size="750">750</button>
+    </div>
   </div>
   <div class="cards"></div>
 </section>
@@ -181,6 +192,8 @@
       <li><strong>Baratza Encore:</strong> V60 has worked at 14-19 clicks, AeroPress espresso-style at 14, AeroPress inverted at 26.</li>
       <li><strong>Hario hand grinder:</strong> 3 clicks from the bottom stalled the V60 (over 4:00, muddy). Try 5-6 clicks from the bottom. Settings do not match the Encore's.</li>
       <li><strong>V60 size 02:</strong> Comfortable up to about 35 g of coffee and 450 g of water; these are approximate. For more, brew in two batches or use a 03.</li>
+      <li><strong>Able Kone:</strong> Reusable metal filter. Not dialed in yet; grind settings under To try are estimates.</li>
+      <li><strong>Melitta #4:</strong> Unbranded cone dripper with a narrow base. Not dialed in yet; check how much coffee it holds before a large batch.</li>
     </ul>
   </article>
 </section>
@@ -274,8 +287,47 @@
         { t: 'Press until 2:10; this gives about [[60]] g.', at: 100 },
         { t: 'Add hot water up to [[150]] g total.' }
       ],
-      tip: 'For a stronger cup, stop at [[110]]-[[120]] g. 26 clicks is a starting guess; the original uses a coarse, sifted grind.' }
+      tip: 'For a stronger cup, stop at [[110]]-[[120]] g. 26 clicks is a starting guess; the original uses a coarse, sifted grind.' },
+
+    { sec: 'try', brewer: 'v60', size: '450', title: 'V60, 450 g', badge: 'to try', badgeClass: 'try',
+      note: 'Near the limit for a size 02.',
+      coffee: 32, water: 450, temp: '95°C', clicks: '17', time: '~3:45', timeLabel: 'target', end: 225,
+      steps: [
+        { t: 'Bloom to [[64]] g.', at: 0 },
+        { t: 'Pour to [[270]] g.', at: 45 },
+        { t: 'Pour to [[450]] g.', at: 90 }
+      ],
+      tip: 'Go coarser if it stalls.' }
   ];
+
+  // Kone and Melitta #4 share pour weights; grind and temperature differ.
+  var batches = [
+    { size: 'cup', label: 'one cup', coffee: 22, water: 300, pours: [60, 180, 300], at: [0, 45, 75] },
+    { size: '450', label: '450 g', coffee: 32, water: 450, pours: [64, 270, 450], at: [0, 45, 90] },
+    { size: '600', label: '600 g', coffee: 43, water: 600, pours: [86, 240, 420, 600], at: [0, 45, 105, 165] },
+    { size: '750', label: '750 g', coffee: 54, water: 750, pours: [108, 300, 525, 750], at: [0, 45, 105, 165] }
+  ];
+  [
+    { brewer: 'kone', name: 'Able Kone', temp: '95°C', clicks: { cup: '18', '450': '20', large: '22' }, largeTime: '4:00-4:30', largeEnd: 270,
+      tip: 'Bitter or stalled: go coarser. Sour, weak or too fast: go finer.' },
+    { brewer: 'flat', name: 'Melitta #4', temp: '94°C', clicks: { cup: '16', '450': '18', large: '20' },
+      tip: 'Bitter or stalled: go coarser. Sour, weak or too fast: go finer.' }
+  ].forEach(function (b) {
+    batches.forEach(function (z) {
+      var large = z.water >= 600;
+      recipes.push({
+        sec: 'try', brewer: b.brewer, size: z.size, title: b.name + ', ' + z.label, badge: 'to try', badgeClass: 'try',
+        note: b.brewer === 'flat' && large ? 'Check that the dripper holds this much.' : '',
+        coffee: z.coffee, water: z.water, temp: b.temp, clicks: b.clicks[z.size] || b.clicks.large,
+        time: large ? (b.largeTime || '4:30-5:30') : (z.size === 'cup' ? '~3:00' : '~3:45'), timeLabel: 'target',
+        end: large ? (b.largeEnd || 300) : (z.size === 'cup' ? 180 : 225),
+        steps: z.pours.map(function (g, i) {
+          return { t: (i ? 'Pour to [[' : 'Bloom to [[') + g + ']] g.', at: z.at[i] };
+        }),
+        tip: b.tip
+      });
+    });
+  });
 
   // ---------- Helpers ----------
   function fmtTime(s) {
@@ -300,6 +352,7 @@
     var card = document.createElement('article');
     card.className = 'card';
     card.dataset.brewer = r.brewer;
+    card.dataset.size = r.size || 'cup';
     var steps = r.steps.map(function (s) {
       return '<li>' + esc(amt(s.t, 1)) + (s.at != null ? '<span class="at">' + fmtTime(s.at) + '</span>' : '') + '</li>';
     }).join('');
@@ -517,18 +570,38 @@
   var defaults = { best: 'aeropress', try: 'v60' };
   Object.keys(defaults).forEach(function (sectionId) {
     var section = document.getElementById(sectionId);
-    var subs = section.querySelectorAll('.subtabs button');
+    var subs = section.querySelectorAll('.subtabs button[data-brewer]');
+    var sizes = section.querySelectorAll('.subtabs button[data-size]');
+    var sizeKey = 'coffee-size-' + sectionId, size = 'cup';
+    try { size = localStorage.getItem(sizeKey) || size; } catch (e) {}
     var cards = section.querySelectorAll('article[data-brewer]');
     var key = 'coffee-brewer-' + sectionId;
+    var current;
     function showBrewer(b) {
-      cards.forEach(function (c) { c.hidden = c.dataset.brewer !== b; });
+      current = b;
+      // Offer only the sizes this brewer has; fall back to one cup.
+      var have = [];
+      cards.forEach(function (c) { if (c.dataset.brewer === b) have.push(c.dataset.size); });
+      var shown = have.indexOf(size) < 0 ? 'cup' : size;
+      sizes.forEach(function (s) {
+        s.hidden = have.indexOf(s.dataset.size) < 0;
+        s.setAttribute('aria-selected', s.dataset.size === shown ? 'true' : 'false');
+      });
+      cards.forEach(function (c) { c.hidden = c.dataset.brewer !== b || (sizes.length > 0 && c.dataset.size !== shown); });
       subs.forEach(function (s) { s.setAttribute('aria-selected', s.dataset.brewer === b ? 'true' : 'false'); });
       try { localStorage.setItem(key, b); } catch (e) {}
     }
     subs.forEach(function (s) { s.addEventListener('click', function () { showBrewer(s.dataset.brewer); }); });
+    sizes.forEach(function (s) {
+      s.addEventListener('click', function () {
+        size = s.dataset.size;
+        try { localStorage.setItem(sizeKey, size); } catch (e) {}
+        showBrewer(current);
+      });
+    });
     var brewer = defaults[sectionId];
     try { brewer = localStorage.getItem(key) || brewer; } catch (e) {}
-    if (brewer !== 'aeropress' && brewer !== 'v60') brewer = defaults[sectionId];
+    if (!section.querySelector('.subtabs button[data-brewer="' + brewer + '"]')) brewer = defaults[sectionId];
     showBrewer(brewer);
   });
 })();
