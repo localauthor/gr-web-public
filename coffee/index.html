@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3b2a20">
+<title>Coffee Recipe Book</title>
+<style>
+  :root {
+    --bg: #f6f0e8; --card: #fffdf9; --ink: #2b1f18; --muted: #7a6a5d;
+    --line: #e5d9cb; --accent: #8a4b24; --accent-soft: #f0dfcf; --head: #3b2a20; --head-ink: #f6ece0;
+    --good: #2f7d4f; --good-soft: #dff0e4; --warn-soft: #f7e7c8; --active: #fff1d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17110d; --card: #211812; --ink: #f1e7dc; --muted: #a8978a;
+      --line: #3a2d24; --accent: #e0a070; --accent-soft: #35261b; --head: #0f0a07; --head-ink: #f1e7dc;
+      --good: #7fd0a0; --good-soft: #1d3426; --warn-soft: #3a2f18; --active: #45331a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.5 -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  body.locked { overflow: hidden; }
+  header { background: var(--head); color: var(--head-ink); padding: calc(env(safe-area-inset-top) + 20px) 20px 14px; }
+  header h1 { margin: 0; font-size: 1.5rem; letter-spacing: .2px; }
+  header p { margin: 2px 0 0; font-size: .85rem; opacity: .7; }
+  nav {
+    position: sticky; top: 0; z-index: 5; display: flex; gap: 6px; overflow-x: auto;
+    background: var(--head); padding: 0 12px 10px; scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav button {
+    flex: 0 0 auto; border: 0; border-radius: 999px; padding: 8px 14px;
+    font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+    background: transparent; color: var(--head-ink); opacity: .75;
+  }
+  nav button[aria-selected="true"] { background: var(--head-ink); color: var(--head); opacity: 1; }
+  main { max-width: 680px; margin: 0 auto; padding: 16px; }
+  section[hidden], article[hidden], [hidden] { display: none !important; }
+  .lead { color: var(--muted); margin: 0 0 14px; }
+  .subtabs { display: inline-flex; background: var(--accent-soft); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+  .subtabs button {
+    border: 0; border-radius: 999px; padding: 6px 16px; font: inherit; font-size: .9rem; font-weight: 600;
+    background: transparent; color: var(--muted); cursor: pointer;
+  }
+  .subtabs button[aria-selected="true"] { background: var(--card); color: var(--accent); box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+  .card h3 { margin: 0; font-size: 1.1rem; }
+  .row { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 4px 10px; }
+  .badge {
+    flex: 0 0 auto; font-size: .8rem; font-weight: 700; border-radius: 999px; padding: 3px 10px;
+    background: var(--good-soft); color: var(--good);
+  }
+  .badge.neutral { background: var(--accent-soft); color: var(--accent); }
+  .badge.try { background: var(--warn-soft); color: var(--accent); }
+  .note { color: var(--muted); font-size: .92rem; margin: 4px 0 8px; }
+  .stats {
+    display: grid; grid-template-columns: max-content max-content; gap: 3px 22px;
+    width: fit-content; max-width: 100%;
+    background: var(--accent-soft); border-radius: 10px; padding: 8px 14px; margin: 8px 0 10px;
+    font-size: .92rem;
+  }
+  .stat b { font-weight: 700; }
+  .stat .lbl { color: var(--muted); margin-left: 4px; text-transform: lowercase; }
+  ol.plain-steps { margin: 0; padding-left: 20px; }
+  ol.plain-steps li { margin: 3px 0; }
+  .at { color: var(--muted); font-size: .8rem; margin-left: 6px; white-space: nowrap; }
+  .tip { margin-top: 10px; font-size: .9rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; }
+  .brewbtn {
+    margin-top: 12px; border: 0; border-radius: 999px; padding: 9px 20px; font: inherit; font-weight: 700;
+    background: var(--accent); color: var(--card); cursor: pointer;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+  th { font-size: .75rem; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+  td:first-child { font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  ul.plain { margin: 0; padding-left: 20px; }
+  ul.plain li { margin: 8px 0; }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 8px 16px 28px; }
+
+  /* ---------- Brew page ---------- */
+  #brew { position: fixed; inset: 0; z-index: 20; background: var(--bg); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .bar {
+    position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    background: var(--head); color: var(--head-ink); padding: calc(env(safe-area-inset-top) + 10px) 14px 10px;
+  }
+  .bar button {
+    border: 1px solid rgba(255,255,255,.3); background: transparent; color: var(--head-ink);
+    border-radius: 999px; padding: 6px 14px; font: inherit; font-size: .85rem; cursor: pointer;
+  }
+  .bar #awake[aria-pressed="true"] { background: var(--head-ink); color: var(--head); }
+  .bar .page { font-weight: 700; letter-spacing: .3px; }
+  .brew-body { max-width: 680px; margin: 0 auto; padding: 16px; }
+  .brew-body h2 { margin: 0 0 2px; font-size: 1.3rem; }
+  .scale { display: flex; align-items: center; gap: 8px; font-size: .95rem; margin: 8px 0; flex-wrap: wrap; }
+  .scale .lbl { color: var(--muted); }
+  .scale button {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px;
+    min-width: 36px; height: 34px; font: inherit; font-size: 1.1rem; cursor: pointer;
+  }
+  .scale .dose { min-width: 3ch; text-align: center; font-weight: 700; font-size: 1.1rem; }
+  .scale .hint { color: var(--muted); font-size: .8rem; flex-basis: 100%; }
+  .timer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 12px 0 6px; }
+  .clock { font-variant-numeric: tabular-nums; font-size: 3rem; font-weight: 700; line-height: 1; min-width: 3.4ch; }
+  .go {
+    border: 0; border-radius: 999px; padding: 12px 26px; font: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer;
+    background: var(--accent); color: var(--card);
+  }
+  .rst {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px;
+    padding: 12px 18px; font: inherit; cursor: pointer;
+  }
+  .next { flex-basis: 100%; font-size: .9rem; color: var(--muted); min-height: 1.4em; }
+  ul.steps { list-style: none; margin: 8px 0 0; padding: 0; }
+  ul.steps li { margin: 3px 0; border-radius: 10px; transition: background .2s; }
+  ul.steps li.active { background: var(--active); }
+  ul.steps label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 10px; cursor: pointer; font-size: 1.05rem; }
+  ul.steps input { margin-top: 4px; width: 22px; height: 22px; flex: 0 0 auto; accent-color: var(--accent); }
+  ul.steps li.done .txt { text-decoration: line-through; opacity: .55; }
+  #brew.flash .clock { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Coffee Recipe Book</h1>
+  <p>AeroPress · Hario V60 · Baratza Encore · updated 26 Nov 2026</p>
+</header>
+
+<nav role="tablist" aria-label="Sections">
+  <button role="tab" aria-selected="true" data-tab="best">Best</button>
+  <button role="tab" aria-selected="false" data-tab="try">To try</button>
+  <button role="tab" aria-selected="false" data-tab="dial">Dial in</button>
+  <button role="tab" aria-selected="false" data-tab="gear">Gear</button>
+</nav>
+
+<main>
+
+<section id="best">
+  <p class="lead">Two AeroPress recipes rate 4.5 or higher. The V60 is still being dialed in.</p>
+  <div class="subtabs" role="tablist" aria-label="Brewer">
+    <button role="tab" aria-selected="true" data-brewer="aeropress">AeroPress</button>
+    <button role="tab" aria-selected="false" data-brewer="v60">V60</button>
+  </div>
+  <div class="cards"></div>
+</section>
+
+<section id="try" hidden>
+  <p class="lead">Three untested recipes, built from what the log shows.</p>
+  <div class="subtabs" role="tablist" aria-label="Brewer">
+    <button role="tab" aria-selected="false" data-brewer="aeropress">AeroPress</button>
+    <button role="tab" aria-selected="true" data-brewer="v60">V60</button>
+  </div>
+  <div class="cards"></div>
+</section>
+
+<section id="dial" hidden>
+  <p class="lead">Change one thing at a time, and the grind first.</p>
+  <article class="card">
+    <table>
+      <tr><th>Cup tastes</th><th>Cause</th><th>Change</th></tr>
+      <tr><td>Sour, thin, sharp</td><td>Under-extracted</td><td>Grind 1-2 clicks finer; pour more slowly</td></tr>
+      <tr><td>Bitter, dry, harsh</td><td>Over-extracted</td><td>Grind 1-2 clicks coarser; then drop water 2-3°C</td></tr>
+      <tr><td>Flat, dull, muddy</td><td>Fines clogging the filter</td><td>Pour gently, no swirl after the bloom, go coarser</td></tr>
+      <tr><td>Balanced but weak</td><td>Too little coffee</td><td>Raise the dose; keep the grind</td></tr>
+      <tr><td>Draw-down too slow</td><td>Grind too fine or bed too deep</td><td>Go coarser; use a smaller dose</td></tr>
+    </table>
+  </article>
+</section>
+
+<section id="gear" hidden>
+  <article class="card">
+    <ul class="plain">
+      <li><strong>Baratza Encore:</strong> V60 has worked at 14-19 clicks, AeroPress espresso-style at 14, AeroPress inverted at 26.</li>
+      <li><strong>Hario hand grinder:</strong> 3 clicks from the bottom stalled the V60 (over 4:00, muddy). Try 5-6 clicks from the bottom. Settings do not match the Encore's.</li>
+      <li><strong>V60 size 02:</strong> Comfortable up to about 35 g of coffee and 450 g of water; these are approximate. For more, brew in two batches or use a 03.</li>
+    </ul>
+  </article>
+</section>
+
+</main>
+
+
+<div id="brew" role="dialog" aria-modal="true" aria-label="Brew" hidden>
+  <div class="bar">
+    <button id="back" type="button">← Back</button>
+    <span class="page">Brew</span>
+    <button id="awake" type="button" aria-pressed="true" hidden>Screen awake: on</button>
+  </div>
+  <div class="brew-body"></div>
+</div>
+
+<noscript><p style="padding:16px">This page needs JavaScript to show the recipes.</p></noscript>
+
+<script>
+(function () {
+  // [[n]] in text = an amount in grams that scales with the dose.
+  // at = seconds on the timer when the step starts (steps without "at" are not timed).
+  var recipes = [
+    { sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted', badge: '5 / 5', badgeClass: '',
+      note: 'Strong, sweet, no acidity. Drunk undiluted.',
+      coffee: 30, water: 150, temp: '92°C', clicks: '26', time: '1:00', timeLabel: 'steep', end: 90,
+      steps: [
+        { t: 'Rinse the filter.' },
+        { t: 'Pour all [[150]] g of water, stir right away, start the timer.', at: 0 },
+        { t: 'Start plunging; plunge for 30 s.', at: 60 }
+      ],
+      tip: 'Makes about [[90]] g of concentrate (about 1:5).' },
+
+    { sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted, espresso-style', badge: '4.5 / 5', badgeClass: '',
+      note: 'Really nice. Concentrated, uses less coffee.',
+      coffee: 18, water: 60, temp: '95°C', clicks: '14', time: '2:00', timeLabel: 'steep', end: 150,
+      steps: [
+        { t: 'Rinse the filter.' },
+        { t: 'Pour all [[60]] g of water, stir right away, start the timer.', at: 0 },
+        { t: 'Start plunging; plunge for 20-30 s.', at: 120 }
+      ],
+      tip: 'Makes about [[24]] g of concentrate (about 1:3).' },
+
+    { sec: 'best', brewer: 'v60', title: 'V60 (size 02)', badge: 'not rated yet', badgeClass: 'neutral',
+      note: 'Best V60 so far: heavier and sweeter, with more body. Nov 20.',
+      coffee: 24, water: 300, temp: '95°C', clicks: '14', time: '<3:30', timeLabel: 'draw-down', end: 210,
+      steps: [
+        { t: 'Bloom with [[72]] g.', at: 0 },
+        { t: 'Pour to [[190]] g.', at: 45 },
+        { t: 'Pour to [[300]] g.', at: 75 }
+      ] },
+
+    { sec: 'try', brewer: 'v60', title: 'V60 4:6', badge: 'to try', badgeClass: 'try',
+      note: 'Makes about [[220]] g in the cup. Your last 4:6 brew ran 4:30 and tasted bitter and dry, so this goes coarser.',
+      coffee: 22, water: 264, temp: '95°C', clicks: '19', time: '3:15-3:45', timeLabel: 'target', end: 225,
+      steps: [
+        { t: 'Pour gently to [[53]] g.', at: 0 },
+        { t: 'Pour to [[106]] g.', at: 45 },
+        { t: 'Pour to [[158]] g.', at: 90 },
+        { t: 'Pour to [[211]] g.', at: 135 },
+        { t: 'Pour to [[264]] g.', at: 180 }
+      ],
+      tip: 'No swirl. Drop to 92°C only if it is still bitter.' },
+
+    { sec: 'try', brewer: 'v60', title: 'V60, stronger version of the best recipe', badge: 'to try', badgeClass: 'try',
+      coffee: 27, water: 300, temp: '95°C', clicks: '14', time: '3:15-3:45', timeLabel: 'target', end: 225,
+      steps: [
+        { t: 'Bloom with [[80]] g and wait.', at: 0 },
+        { t: 'Pour to [[190]] g.', at: 60 },
+        { t: 'Pour to [[300]] g.', at: 90 }
+      ],
+      tip: 'Go 1 click coarser if it passes 4:00.' },
+
+    { sec: 'try', brewer: 'aeropress', title: 'AeroPress, inverted, smaller dose', badge: 'to try', badgeClass: 'try',
+      note: 'The 5/5 recipe scaled to two-thirds.',
+      coffee: 20, water: 100, temp: '92°C', clicks: '26', time: '1:00', timeLabel: 'steep', end: 90,
+      steps: [
+        { t: 'Rinse the filter.' },
+        { t: 'Pour all [[100]] g of water, stir right away, start the timer.', at: 0 },
+        { t: 'Start plunging; plunge for 30 s.', at: 60 }
+      ],
+      tip: 'Makes about [[60]] g; add 60-100 g hot water for a full cup.' }
+  ];
+
+  // ---------- Helpers ----------
+  function fmtTime(s) {
+    s = Math.max(0, Math.round(s));
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+  function amt(text, f) {
+    return text.replace(/\[\[(\d+(?:\.\d+)?)\]\]/g, function (_, n) { return String(Math.round(parseFloat(n) * f)); });
+  }
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function statsHtml(r, f) {
+    return '<div class="stat"><b>' + Math.round(r.water * f) + ' g</b><span class="lbl">water</span></div>' +
+           '<div class="stat"><b>' + esc(r.temp) + '</b><span class="lbl">temp</span></div>' +
+           '<div class="stat"><b>' + Math.round(r.coffee * f) + ' g</b><span class="lbl">coffee</span></div>' +
+           '<div class="stat"><b>' + esc(r.clicks) + '</b><span class="lbl">encore clicks</span></div>' +
+           '<div class="stat"><b>' + esc(r.time) + '</b><span class="lbl">' + esc(r.timeLabel) + '</span></div>';
+  }
+
+  // ---------- Recipe cards (reference view) ----------
+  function buildCard(r) {
+    var card = document.createElement('article');
+    card.className = 'card';
+    card.dataset.brewer = r.brewer;
+    var steps = r.steps.map(function (s) {
+      return '<li>' + esc(amt(s.t, 1)) + (s.at != null ? '<span class="at">' + fmtTime(s.at) + '</span>' : '') + '</li>';
+    }).join('');
+    card.innerHTML =
+      '<div class="row"><h3>' + esc(r.title) + '</h3><span class="badge ' + r.badgeClass + '">' + esc(r.badge) + '</span></div>' +
+      (r.note ? '<p class="note">' + esc(amt(r.note, 1)) + '</p>' : '') +
+      '<div class="stats">' + statsHtml(r, 1) + '</div>' +
+      '<ol class="plain-steps">' + steps + '</ol>' +
+      (r.tip ? '<p class="tip">' + esc(amt(r.tip, 1)) + '</p>' : '') +
+      '<button type="button" class="brewbtn">Brew this</button>';
+    card.querySelector('.brewbtn').addEventListener('click', function () { openBrew(r); });
+    return card;
+  }
+  recipes.forEach(function (r) {
+    document.querySelector('#' + r.sec + ' .cards').appendChild(buildCard(r));
+  });
+
+  // ---------- Screen wake lock ----------
+  var awakeOn = true, lock = null, brewOpen = false;
+  var awakeBtn = document.getElementById('awake');
+  try { if (localStorage.getItem('coffee-awake') === 'off') awakeOn = false; } catch (e) {}
+  function setAwakeUi() {
+    awakeBtn.setAttribute('aria-pressed', awakeOn ? 'true' : 'false');
+    awakeBtn.textContent = 'Screen awake: ' + (awakeOn ? 'on' : 'off');
+  }
+  function requestLock() {
+    if (!awakeOn || !brewOpen || lock || !('wakeLock' in navigator)) return;
+    navigator.wakeLock.request('screen').then(function (l) {
+      lock = l;
+      l.addEventListener('release', function () { lock = null; });
+    }).catch(function () {});
+  }
+  function releaseLock() { if (lock) { lock.release().catch(function () {}); lock = null; } }
+  if ('wakeLock' in navigator) {
+    awakeBtn.hidden = false;
+    setAwakeUi();
+    awakeBtn.addEventListener('click', function () {
+      awakeOn = !awakeOn;
+      try { localStorage.setItem('coffee-awake', awakeOn ? 'on' : 'off'); } catch (e) {}
+      setAwakeUi();
+      if (awakeOn) requestLock(); else releaseLock();
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') requestLock();
+    });
+  }
+
+  // ---------- Beep ----------
+  var audio = null;
+  function ensureAudio() {
+    try {
+      if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === 'suspended') audio.resume();
+    } catch (e) {}
+  }
+  function beep(long) {
+    try {
+      ensureAudio();
+      if (!audio) return;
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = long ? 660 : 880;
+      g.gain.value = 0.15;
+      o.connect(g); g.connect(audio.destination);
+      o.start(); o.stop(audio.currentTime + (long ? 0.5 : 0.15));
+    } catch (e) {}
+    try { if (navigator.vibrate) navigator.vibrate(long ? 400 : 150); } catch (e) {}
+  }
+
+  // ---------- Brew page ----------
+  var brewEl = document.getElementById('brew');
+  var brewBody = brewEl.querySelector('.brew-body');
+  var teardown = null;
+
+  function openBrew(r) {
+    closeBrew();
+    var factor = 1;
+    brewBody.innerHTML =
+      '<h2></h2>' +
+      '<div class="scale"><span class="lbl">Coffee</span>' +
+        '<button type="button" class="dec" aria-label="Less coffee">−</button>' +
+        '<span class="dose"></span><span class="lbl">g</span>' +
+        '<button type="button" class="inc" aria-label="More coffee">+</button>' +
+        '<button type="button" class="rs">reset</button>' +
+        '<span class="hint">Grind and timing may need a small tweak.</span></div>' +
+      '<div class="stats"></div>' +
+      '<div class="timer"><span class="clock">0:00</span>' +
+        '<button type="button" class="go">Start</button>' +
+        '<button type="button" class="rst">Reset</button>' +
+        '<span class="next"></span></div>' +
+      '<ul class="steps"></ul>' +
+      '<p class="tip"></p>';
+    brewBody.querySelector('h2').textContent = r.title;
+    var doseEl = brewBody.querySelector('.dose'), statsEl = brewBody.querySelector('.stats');
+    var stepsEl = brewBody.querySelector('.steps'), tipEl = brewBody.querySelector('.tip');
+    var clock = brewBody.querySelector('.clock'), goBtn = brewBody.querySelector('.go'), nextEl = brewBody.querySelector('.next');
+
+    var stepEls = r.steps.map(function () {
+      var li = document.createElement('li');
+      li.innerHTML = '<label><input type="checkbox"><span class="txt"></span></label>';
+      stepsEl.appendChild(li);
+      li.querySelector('input').addEventListener('change', function (e) { li.classList.toggle('done', e.target.checked); });
+      return li;
+    });
+
+    function render() {
+      var dose = Math.round(r.coffee * factor);
+      doseEl.textContent = dose;
+      statsEl.innerHTML = statsHtml(r, factor);
+      tipEl.textContent = r.tip ? amt(r.tip, factor) : '';
+      tipEl.hidden = !r.tip;
+      r.steps.forEach(function (s, i) {
+        var txt = stepEls[i].querySelector('.txt');
+        txt.textContent = amt(s.t, factor);
+        if (s.at != null) {
+          var a = document.createElement('span'); a.className = 'at'; a.textContent = fmtTime(s.at); txt.appendChild(a);
+        }
+      });
+      var changed = dose !== r.coffee;
+      brewBody.querySelector('.rs').hidden = !changed;
+      brewBody.querySelector('.hint').hidden = !changed;
+    }
+    function setDose(d) { d = Math.max(5, Math.min(80, d)); factor = d / r.coffee; render(); }
+    brewBody.querySelector('.dec').addEventListener('click', function () { setDose(Math.round(r.coffee * factor) - 1); });
+    brewBody.querySelector('.inc').addEventListener('click', function () { setDose(Math.round(r.coffee * factor) + 1); });
+    brewBody.querySelector('.rs').addEventListener('click', function () { setDose(r.coffee); });
+
+    // Timer
+    var startedAt = 0, elapsedBase = 0, tick = null, fired = {}, finished = false;
+    function elapsed() { return elapsedBase + (tick ? (Date.now() - startedAt) / 1000 : 0); }
+    function flash() { brewEl.classList.add('flash'); setTimeout(function () { brewEl.classList.remove('flash'); }, 600); }
+    function update() {
+      var t = elapsed(), activeIdx = -1, nextIdx = -1;
+      clock.textContent = fmtTime(t);
+      r.steps.forEach(function (s, i) {
+        if (s.at == null) return;
+        if (s.at <= t) activeIdx = i; else if (nextIdx < 0) nextIdx = i;
+      });
+      r.steps.forEach(function (s, i) {
+        if (s.at == null) return;
+        var li = stepEls[i];
+        li.classList.toggle('active', i === activeIdx && !finished);
+        if (i < activeIdx || finished) { li.classList.add('done'); li.querySelector('input').checked = true; }
+        if (s.at <= t && !fired[i]) { fired[i] = true; if (s.at > 0) { beep(false); flash(); } }
+      });
+      if (finished) nextEl.textContent = 'Done. Enjoy.';
+      else if (nextIdx >= 0) {
+        var label = amt(r.steps[nextIdx].t, factor);
+        nextEl.textContent = 'Next in ' + fmtTime(r.steps[nextIdx].at - t) + ': ' + label;
+      } else if (activeIdx >= 0) nextEl.textContent = 'Finish at about ' + fmtTime(r.end);
+      else nextEl.textContent = '';
+      if (t >= r.end && tick) { finished = true; pause(true); update(); beep(true); flash(); }
+    }
+    function start() {
+      if (tick) return;
+      ensureAudio();
+      if (finished) resetTimer();
+      startedAt = Date.now();
+      tick = setInterval(update, 250);
+      goBtn.textContent = 'Pause';
+      update();
+    }
+    function pause(done) {
+      if (!tick) return;
+      elapsedBase += (Date.now() - startedAt) / 1000;
+      clearInterval(tick); tick = null;
+      goBtn.textContent = done ? 'Start' : 'Resume';
+    }
+    function resetTimer() {
+      if (tick) pause(false);
+      elapsedBase = 0; fired = {}; finished = false;
+      goBtn.textContent = 'Start';
+      stepEls.forEach(function (li) { li.classList.remove('active', 'done'); li.querySelector('input').checked = false; });
+      clock.textContent = '0:00'; nextEl.textContent = '';
+    }
+    goBtn.addEventListener('click', function () { if (tick) pause(false); else start(); });
+    brewBody.querySelector('.rst').addEventListener('click', resetTimer);
+
+    teardown = function () { if (tick) { clearInterval(tick); tick = null; } };
+    render();
+    brewEl.hidden = false;
+    document.body.classList.add('locked');
+    brewEl.scrollTop = 0;
+    brewOpen = true;
+    requestLock();
+  }
+
+  function closeBrew() {
+    if (teardown) { teardown(); teardown = null; }
+    brewOpen = false;
+    releaseLock();
+    brewEl.hidden = true;
+    document.body.classList.remove('locked');
+  }
+  document.getElementById('back').addEventListener('click', closeBrew);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !brewEl.hidden) closeBrew(); });
+
+  // ---------- Main tabs ----------
+  var tabs = document.querySelectorAll('nav button');
+  var panels = document.querySelectorAll('main > section');
+  function show(id) {
+    var found = false;
+    panels.forEach(function (p) { if (p.id === id) found = true; });
+    if (!found) id = 'best';
+    panels.forEach(function (p) { p.hidden = p.id !== id; });
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.tab === id ? 'true' : 'false'); });
+    try { localStorage.setItem('coffee-tab', id); } catch (e) {}
+    window.scrollTo(0, 0);
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.tab); }); });
+  var startTab = 'best';
+  try { startTab = localStorage.getItem('coffee-tab') || 'best'; } catch (e) {}
+  show(startTab);
+
+  // ---------- Brewer switches ----------
+  var defaults = { best: 'aeropress', try: 'v60' };
+  Object.keys(defaults).forEach(function (sectionId) {
+    var section = document.getElementById(sectionId);
+    var subs = section.querySelectorAll('.subtabs button');
+    var cards = section.querySelectorAll('article[data-brewer]');
+    var key = 'coffee-brewer-' + sectionId;
+    function showBrewer(b) {
+      cards.forEach(function (c) { c.hidden = c.dataset.brewer !== b; });
+      subs.forEach(function (s) { s.setAttribute('aria-selected', s.dataset.brewer === b ? 'true' : 'false'); });
+      try { localStorage.setItem(key, b); } catch (e) {}
+    }
+    subs.forEach(function (s) { s.addEventListener('click', function () { showBrewer(s.dataset.brewer); }); });
+    var brewer = defaults[sectionId];
+    try { brewer = localStorage.getItem(key) || brewer; } catch (e) {}
+    if (brewer !== 'aeropress' && brewer !== 'v60') brewer = defaults[sectionId];
+    showBrewer(brewer);
+  });
+})();
+</script>
+</body>
+</html>
