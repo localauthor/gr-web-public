@@ -152,7 +152,7 @@
 <main>
 
 <section id="best">
-  <p class="lead">Two AeroPress recipes rate 4.5 or higher. The V60 is still being dialed in.</p>
+  <p class="lead">The AeroPress recipes rate 5 and 4.5; the best V60 so far rates 4.</p>
   <div class="subtabs" role="tablist" aria-label="Brewer">
     <button role="tab" aria-selected="true" data-brewer="aeropress">AeroPress</button>
     <button role="tab" aria-selected="false" data-brewer="v60">V60</button>
@@ -210,7 +210,7 @@
   <article class="card">
     <ul class="plain">
       <li><strong>Baratza Encore:</strong> V60 has worked at 14-19 clicks, AeroPress espresso-style at 14, AeroPress inverted at 26.</li>
-      <li><strong>Hario hand grinder:</strong> 3 clicks from the bottom stalled the V60 (over 4:00, muddy). Try 5-6 clicks from the bottom. Settings do not match the Encore's.</li>
+      <li><strong>Hario Skerton Pro:</strong> 3 clicks from the bottom stalled the V60 (over 4:00, muddy). Try 5-6 clicks from the bottom. Settings do not match the Encore's.</li>
       <li><strong>V60 size 02:</strong> Comfortable up to about 35 g of coffee and 450 g of water; these are approximate. For more, brew in two batches or use a 03.</li>
       <li><strong>Able Kone:</strong> Reusable metal filter. Not dialed in yet; grind settings under To try are estimates.</li>
       <li><strong>Melitta #4:</strong> Unbranded cone dripper with a narrow base. Not dialed in yet; check how much coffee it holds before a large batch.</li>
@@ -601,6 +601,8 @@
     brewEl.scrollTop = 0;
     brewOpen = true;
     requestLock();
+    // A history entry, so the phone's back gesture closes the brew screen instead of leaving the page.
+    try { if (!(history.state && history.state.brew)) history.pushState({ brew: true }, ''); } catch (e) {}
   }
 
   function closeBrew() {
@@ -610,8 +612,14 @@
     brewEl.hidden = true;
     document.body.classList.remove('locked');
   }
-  document.getElementById('back').addEventListener('click', closeBrew);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !brewEl.hidden) closeBrew(); });
+  // After a reload the brew screen is closed, so drop a leftover brew entry.
+  try { if (history.state && history.state.brew) history.replaceState(null, ''); } catch (e) {}
+  function leaveBrew() {
+    if (history.state && history.state.brew) history.back(); else closeBrew();
+  }
+  window.addEventListener('popstate', function () { if (!brewEl.hidden) closeBrew(); });
+  document.getElementById('back').addEventListener('click', leaveBrew);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !brewEl.hidden) leaveBrew(); });
 
   // ---------- Main tabs ----------
   var tabs = document.querySelectorAll('nav button');
@@ -673,6 +681,11 @@
     if (used.indexOf(brewer) < 0) brewer = used.indexOf(defaults[sectionId]) < 0 ? used[0] : defaults[sectionId];
     showBrewer(brewer);
   });
+
+  // ---------- Offline ----------
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
 })();
 </script>
 </body>
