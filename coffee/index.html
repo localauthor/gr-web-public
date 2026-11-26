@@ -35,6 +35,7 @@
   header { background: var(--head); color: var(--head-ink); padding: calc(env(safe-area-inset-top) + 20px) 20px 14px; }
   header h1 { margin: 0; font-size: 1.5rem; letter-spacing: .2px; }
   header p { margin: 2px 0 0; font-size: .85rem; opacity: .7; }
+  header select { font: inherit; max-width: 100%; border-radius: 8px; padding: 2px 6px; margin: 2px 6px 2px 0; }
   nav {
     position: sticky; top: 0; z-index: 5; display: flex; gap: 6px; overflow-x: auto;
     background: var(--head); padding: 0 12px 10px; scrollbar-width: none;
@@ -138,7 +139,7 @@
 <header>
   <h1>Coffee Recipe Book</h1>
   <p>AeroPress · Hario V60 · Able Kone · Melitta #4 · Baratza Encore · updated 27 Nov 2026</p>
-  <p>Beans: Löfbergs medium roast. For other beans, adjust the grind first.</p>
+  <p id="beans">Beans: Löfbergs medium roast. For other beans, adjust the grind first.</p>
 </header>
 
 <nav role="tablist" aria-label="Sections">
@@ -155,6 +156,8 @@
   <div class="subtabs" role="tablist" aria-label="Brewer">
     <button role="tab" aria-selected="true" data-brewer="aeropress">AeroPress</button>
     <button role="tab" aria-selected="false" data-brewer="v60">V60</button>
+    <button role="tab" aria-selected="false" data-brewer="kone">Kone</button>
+    <button role="tab" aria-selected="false" data-brewer="flat">Melitta #4</button>
   </div>
   <div class="cards"></div>
 </section>
@@ -234,7 +237,7 @@
   // [[n]] in text = an amount in grams that scales with the dose.
   // at = seconds on the timer when the step starts (steps without "at" are not timed).
   var recipes = [
-    { sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted', badge: '5 / 5', badgeClass: '',
+    { log: true, sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted', badge: '5 / 5', badgeClass: '',
       note: 'Strong, sweet, no acidity. Drunk undiluted.',
       coffee: 30, water: 150, temp: '92°C', clicks: '26', time: '1:00', timeLabel: 'steep', end: 90,
       steps: [
@@ -244,7 +247,7 @@
       ],
       tip: 'Makes about [[90]] g of concentrate (about 1:5).' },
 
-    { sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted, espresso-style', badge: '4.5 / 5', badgeClass: '',
+    { log: true, sec: 'best', brewer: 'aeropress', title: 'AeroPress, inverted, espresso-style', badge: '4.5 / 5', badgeClass: '',
       note: 'Really nice. Concentrated, uses less coffee.',
       coffee: 18, water: 60, temp: '95°C', clicks: '14', time: '2:00', timeLabel: 'steep', end: 150,
       steps: [
@@ -254,7 +257,7 @@
       ],
       tip: 'Makes about [[24]] g of concentrate (about 1:3).' },
 
-    { sec: 'best', brewer: 'v60', title: 'V60, 3 pours', badge: '4 / 5', badgeClass: '',
+    { log: true, sec: 'best', brewer: 'v60', title: 'V60, 3 pours', badge: '4 / 5', badgeClass: '',
       note: 'Best V60 so far: heavier and sweeter, with more body. Nov 20.',
       coffee: 24, water: 300, temp: '95°C', clicks: '14', time: '<3:30', timeLabel: 'draw-down', end: 210,
       steps: [
@@ -263,7 +266,7 @@
         { t: 'Pour to [[300]] g.', at: 75 }
       ] },
 
-    { sec: 'try', brewer: 'v60', title: 'V60 4:6', badge: 'to try', badgeClass: 'try',
+    { log: true, sec: 'try', brewer: 'v60', title: 'V60 4:6', badge: 'to try', badgeClass: 'try',
       note: 'Makes about [[220]] g in the cup. At 19 clicks it rated 3.5/5: not bitter, a bit more flavor, 4:20 draw-down. Try 21 clicks, which should shorten the draw-down and bring out more flavor.',
       coffee: 22, water: 264, temp: '95°C', clicks: '21', time: '3:15-3:45', timeLabel: 'target', end: 225,
       steps: [
@@ -284,7 +287,7 @@
       ],
       tip: 'Go 1 click coarser if it passes 4:00.' },
 
-    { sec: 'try', brewer: 'aeropress', title: 'AeroPress, inverted, smaller dose', badge: 'to try', badgeClass: 'try',
+    { log: true, sec: 'try', brewer: 'aeropress', title: 'AeroPress, inverted, smaller dose', badge: 'to try', badgeClass: 'try',
       note: 'The 5/5 recipe scaled to two-thirds.',
       coffee: 20, water: 100, temp: '92°C', clicks: '26', time: '1:00', timeLabel: 'steep', end: 90,
       steps: [
@@ -345,6 +348,50 @@
       });
     });
   });
+
+  // ---------- Beans ----------
+  // The first bag uses the recipes exactly as written above. Each later bag starts with all of them
+  // under "To try", unrated, and records only what differs, keyed by recipe title, for example:
+  //   { id: 'newbag', name: 'Roaster, bean name', changes: {
+  //       'AeroPress, inverted': { sec: 'best', badge: '4.5 / 5', badgeClass: '', clicks: '24', note: '...' } } }
+  // A change to a recipe above also reaches later bags that have not overridden that field.
+  var bags = [
+    { id: 'lofbergs', name: 'Löfbergs medium roast' }
+  ];
+  var bag = bags[0];
+  try {
+    var savedBag = localStorage.getItem('coffee-bag');
+    bags.forEach(function (b) { if (b.id === savedBag) bag = b; });
+  } catch (e) {}
+  if (bag !== bags[0]) {
+    recipes = recipes.map(function (r) {
+      var c = {}, k, over = (bag.changes || {})[r.title] || {};
+      for (k in r) c[k] = r[k];
+      c.sec = 'try'; c.badge = 'to try'; c.badgeClass = 'try';
+      if (r.log) c.note = '';
+      for (k in over) c[k] = over[k];
+      return c;
+    });
+    var rated = recipes.some(function (r) { return r.sec === 'best'; });
+    document.querySelector('#best .lead').textContent =
+      rated ? 'Best so far with these beans.' : 'Nothing rated yet for these beans. Start from To try.';
+  }
+  if (bags.length > 1) {
+    var line = document.getElementById('beans'), pick = document.createElement('select');
+    pick.setAttribute('aria-label', 'Beans');
+    bags.forEach(function (b) {
+      var o = document.createElement('option');
+      o.value = b.id; o.textContent = b.name; o.selected = b === bag;
+      pick.appendChild(o);
+    });
+    pick.addEventListener('change', function () {
+      try { localStorage.setItem('coffee-bag', pick.value); } catch (e) {}
+      location.reload();
+    });
+    line.textContent = 'Beans: ';
+    line.appendChild(pick);
+    line.appendChild(document.createTextNode('For other beans, adjust the grind first.'));
+  }
 
   // ---------- Helpers ----------
   function fmtTime(s) {
@@ -461,7 +508,7 @@
         '<span class="next"></span></div>' +
       '<ul class="steps"></ul>' +
       '<p class="tip"></p>';
-    brewBody.querySelector('h2').textContent = r.title;
+    brewBody.querySelector('h2').textContent = r.title + (bags.length > 1 ? ' · ' + bag.name : '');
     var doseEl = brewBody.querySelector('.dose'), statsEl = brewBody.querySelector('.stats');
     var stepsEl = brewBody.querySelector('.steps'), tipEl = brewBody.querySelector('.tip');
     var clock = brewBody.querySelector('.clock'), goBtn = brewBody.querySelector('.go'), nextEl = brewBody.querySelector('.next');
@@ -594,6 +641,11 @@
     var cards = section.querySelectorAll('article[data-brewer]');
     var key = 'coffee-brewer-' + sectionId;
     var current;
+    // Offer only brewers that have a card in this section for the chosen beans.
+    var used = [];
+    cards.forEach(function (c) { if (used.indexOf(c.dataset.brewer) < 0) used.push(c.dataset.brewer); });
+    subs.forEach(function (s) { s.hidden = used.indexOf(s.dataset.brewer) < 0; });
+    section.querySelector('.subtabs').hidden = !used.length;
     function showBrewer(b) {
       current = b;
       // Offer only the sizes this brewer has; fall back to one cup.
@@ -618,7 +670,7 @@
     });
     var brewer = defaults[sectionId];
     try { brewer = localStorage.getItem(key) || brewer; } catch (e) {}
-    if (!section.querySelector('.subtabs button[data-brewer="' + brewer + '"]')) brewer = defaults[sectionId];
+    if (used.indexOf(brewer) < 0) brewer = used.indexOf(defaults[sectionId]) < 0 ? used[0] : defaults[sectionId];
     showBrewer(brewer);
   });
 })();
