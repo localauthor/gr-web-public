@@ -1,6 +1,54 @@
 {
- "generated": "2026-11-24T06:01:13+02:00",
+ "generated": "2026-11-26T06:02:16+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 26]",
+   "delivered": "2026-11-26",
+   "articles": [
+    {
+     "title": "Rising stock",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/bibliography/james-joyce-luca-crispi-book-review-robert-spoo",
+     "read": false
+    },
+    {
+     "title": "Cockney scribbler",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/literary-criticism/complete-works-of-charles-and-mary-lamb-gregory-dart-book-review",
+     "read": false
+    },
+    {
+     "title": "Disarming the reviewer",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature-by-region/british-literature/british-women-novelists-and-the-review-periodical-megan-peiser-review-kathryn-sutherland",
+     "read": false
+    },
+    {
+     "title": "Bickering Buildings: A Dialogue Between the Churches of Athens in 1854",
+     "source": "The Public Domain Review",
+     "url": "https://publicdomainreview.org/essay/bickering-buildings",
+     "read": false
+    },
+    {
+     "title": "November’s Best Reviewed Nonfiction",
+     "source": "Literary Hub",
+     "url": "https://lithub.com/novembers-best-reviewed-nonfiction-2026/",
+     "read": false
+    },
+    {
+     "title": "In 2022, two activists glued their hands to works of Goya’s at Madrid’s Prado museum. But what does it mean to attack a painting?",
+     "source": "Arts & Letters Daily",
+     "url": "https://www.artforum.com/features/borka-villel-museums-1234762356/",
+     "read": false
+    },
+    {
+     "title": "The Schlock of the New",
+     "source": "3 Quarks Daily",
+     "url": "https://3quarksdaily.com/3quarksdaily/2026/11/the-schlock-of-the-new.html",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Nov 24]",
    "delivered": "2026-11-24",
