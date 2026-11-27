@@ -547,8 +547,11 @@
     var startedAt = 0, elapsedBase = 0, tick = null, fired = {}, finished = false;
     function elapsed() { return elapsedBase + (tick ? (Date.now() - startedAt) / 1000 : 0); }
     function flash() { brewEl.classList.add('flash'); setTimeout(function () { brewEl.classList.remove('flash'); }, 600); }
+    // Pour-over timers run past the target until paused, to time the draw-down. AeroPress timers stop themselves.
+    var pourOver = r.brewer !== 'aeropress';
     function update() {
       var t = elapsed(), activeIdx = -1, nextIdx = -1;
+      var past = pourOver && t >= r.end;
       clock.textContent = fmtTime(t);
       r.steps.forEach(function (s, i) {
         if (s.at == null) return;
@@ -557,17 +560,19 @@
       r.steps.forEach(function (s, i) {
         if (s.at == null) return;
         var li = stepEls[i];
-        li.classList.toggle('active', i === activeIdx && !finished);
-        if (i < activeIdx || finished) { li.classList.add('done'); li.querySelector('input').checked = true; }
+        li.classList.toggle('active', i === activeIdx && !finished && !past);
+        if (i < activeIdx || finished || past) { li.classList.add('done'); li.querySelector('input').checked = true; }
         if (s.at <= t && !fired[i]) { fired[i] = true; if (s.at > 0) { beep(false); flash(); } }
       });
       if (finished) nextEl.textContent = 'Done. Enjoy.';
+      else if (past) nextEl.textContent = 'Press Pause when the draw-down ends.';
       else if (nextIdx >= 0) {
         var label = amt(r.steps[nextIdx].t, factor);
         nextEl.textContent = 'Next in ' + fmtTime(r.steps[nextIdx].at - t) + ': ' + label;
-      } else if (activeIdx >= 0) nextEl.textContent = 'Finish at about ' + fmtTime(r.end);
+      } else if (activeIdx >= 0) nextEl.textContent = 'Finish at about ' + fmtTime(r.end) + (pourOver ? '. Press Pause when the draw-down ends.' : '');
       else nextEl.textContent = '';
-      if (t >= r.end && tick) { finished = true; pause(true); update(); beep(true); flash(); }
+      if (past) { if (tick && !fired.end) { fired.end = true; beep(true); flash(); } }
+      else if (!pourOver && t >= r.end && tick) { finished = true; pause(true); update(); beep(true); flash(); }
     }
     function start() {
       if (tick) return;
