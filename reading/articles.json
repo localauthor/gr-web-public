@@ -1,6 +1,54 @@
 {
- "generated": "2026-11-26T06:02:16+02:00",
+ "generated": "2026-11-28T06:01:13+02:00",
  "issues": [
+  {
+   "title": "Daily Digest [Nov 28]",
+   "delivered": "2026-11-28",
+   "articles": [
+    {
+     "title": "The Oversharer (Frances Wilson)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/17/the-oversharer-anita-brookner-hermione-lee/",
+     "read": false
+    },
+    {
+     "title": "The Power of Magical Thinking (Nathaniel Rich)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/17/the-power-of-magical-thinking-american-trickster-carlos-castaneda/",
+     "read": false
+    },
+    {
+     "title": "In the Heights (Lorrie Moore)",
+     "source": "New York Review of Books",
+     "url": "https://www.nybooks.com/articles/2026/12/17/in-the-heights-emily-bronte-wuthering-heights/",
+     "read": false
+    },
+    {
+     "title": "The Song of Stork and Dromedary by Anjet Daanje review – don’t miss this glorious epic inspired by Emily Brontë",
+     "source": "Guardian Books",
+     "url": "https://www.theguardian.com/books/2026/nov/24/the-song-of-stork-and-dromedary-by-anjet-daanje-review-dont-miss-this-glorious-epic-inspired-by-emily-bronte",
+     "read": false
+    },
+    {
+     "title": "Sloane’s range",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/bibliography/hans-sloanes-library-collection-and-the-production-of-knowledge-alice-wickenden-book-review-melanie-bigold",
+     "read": false
+    },
+    {
+     "title": "On her own terms",
+     "source": "Times Literary Supplement",
+     "url": "https://www.the-tls.com/literature/fiction/de-lautre-cote-du-lac-sylvain-prudhomme-book-review-russell-williams",
+     "read": false
+    },
+    {
+     "title": "On America’s unbearable newness",
+     "source": "3 Quarks Daily",
+     "url": "https://hedgehogreview.com/issues/why-america-needs-a-third-founding/articles/restless-in-sleepy-hollow",
+     "read": false
+    }
+   ]
+  },
   {
    "title": "Daily Digest [Nov 26]",
    "delivered": "2026-11-26",
